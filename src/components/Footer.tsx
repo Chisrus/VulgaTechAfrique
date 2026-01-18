@@ -12,7 +12,7 @@ const Footer = () => {
                 <Bot className="w-6 h-6 text-primary-foreground" />
               </div>
               <span className="font-display text-xl font-bold text-foreground">
-                Robo<span className="text-gradient-primary">Learn</span>
+                VulgaTech<span className="text-gradient-primary">Afrique</span>
               </span>
             </div>
             <p className="text-sm text-muted-foreground mb-6">
@@ -76,7 +76,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2024 RoboLearn. Tous droits réservés.
+            © 2024 VulgaTechAfrique. Tous droits réservés.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">

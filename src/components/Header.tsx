@@ -15,7 +15,7 @@ const Header = () => {
               <Bot className="w-6 h-6 text-primary-foreground" />
             </div>
             <span className="font-display text-xl font-bold text-foreground">
-              Robo<span className="text-gradient-primary">Learn</span>
+              VulgaTech<span className="text-gradient-primary">Afrique</span>
             </span>
           </div>
 
