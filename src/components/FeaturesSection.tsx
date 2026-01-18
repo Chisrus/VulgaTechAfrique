@@ -4,81 +4,68 @@ const features = [
   {
     icon: Bot,
     title: "Chatbot Intelligent",
-    description: "Un assistant IA disponible 24/7 pour répondre à vos questions et vous guider dans votre apprentissage.",
-    gradient: "from-primary to-primary/60",
+    description: "Un assistant IA disponible 24/7 pour répondre à vos questions et vous guider.",
   },
   {
     icon: Globe,
     title: "Multilingue",
-    description: "Cours disponibles en français, anglais, espagnol, arabe et 6 autres langues pour une accessibilité mondiale.",
-    gradient: "from-accent to-accent/60",
+    description: "Cours disponibles en français, anglais, arabe et 7 autres langues africaines.",
   },
   {
     icon: Users,
     title: "Communauté Active",
-    description: "Rejoignez des milliers d'apprenants, partagez vos projets et collaborez sur des défis robotiques.",
-    gradient: "from-primary to-accent",
+    description: "Rejoignez des milliers d'apprenants et collaborez sur des projets.",
   },
   {
     icon: Zap,
     title: "Apprentissage Rapide",
-    description: "Méthode pédagogique optimisée pour apprendre les concepts complexes de manière simple et ludique.",
-    gradient: "from-accent to-primary",
+    description: "Méthode optimisée pour apprendre les concepts complexes simplement.",
   },
   {
     icon: BookOpen,
     title: "Projets Pratiques",
-    description: "Construisez de vrais robots et programmes IA avec des tutoriels étape par étape.",
-    gradient: "from-primary/80 to-accent/80",
+    description: "Construisez de vrais robots et programmes IA étape par étape.",
   },
   {
     icon: Award,
     title: "Certifications",
-    description: "Obtenez des certificats reconnus pour valider vos compétences en robotique et IA.",
-    gradient: "from-accent/80 to-primary/80",
+    description: "Obtenez des certificats reconnus pour valider vos compétences.",
   },
 ];
 
 const FeaturesSection = () => {
   return (
-    <section id="features" className="py-24 relative">
-      {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/30 to-background" />
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-slide-up">
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">Fonctionnalités</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mt-3 mb-4">
-            Tout ce dont vous avez besoin pour{" "}
-            <span className="text-gradient-primary">apprendre</span>
+    <section id="features" className="py-20 lg:py-28">
+      <div className="container mx-auto px-4 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-14 max-w-2xl mx-auto">
+          <p className="text-primary font-medium text-sm uppercase tracking-wider mb-3">Fonctionnalités</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+            Tout pour apprendre efficacement
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground">
             Une plateforme complète conçue pour rendre la robotique et l'IA accessibles, 
-            peu importe votre niveau ou votre localisation.
+            peu importe votre niveau.
           </p>
         </div>
 
+        {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <div
               key={feature.title}
-              className="group relative bg-card rounded-xl p-6 border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="bg-card rounded-xl p-6 border border-border/50 hover:border-border transition-colors"
             >
-              {/* Icon */}
-              <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                <feature.icon className="w-6 h-6 text-primary-foreground" />
+              <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <feature.icon className="w-5 h-5 text-primary" />
               </div>
 
-              <h3 className="font-display text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+              <h3 className="font-display text-lg font-semibold mb-2 text-foreground">
                 {feature.title}
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {feature.description}
               </p>
-
-              {/* Hover glow effect */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </div>
           ))}
         </div>
