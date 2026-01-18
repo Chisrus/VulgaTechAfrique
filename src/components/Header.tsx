@@ -1,78 +1,79 @@
 import { Button } from "@/components/ui/button";
-import { Bot, Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
-      <div className="container mx-auto px-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
+      <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center shadow-glow">
-              <Bot className="w-6 h-6 text-primary-foreground" />
+          <a href="/" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">VT</span>
             </div>
-            <span className="font-display text-xl font-bold text-foreground">
-              VulgaTech<span className="text-gradient-primary">Afrique</span>
+            <span className="font-display text-lg font-semibold text-foreground tracking-tight">
+              VulgaTech<span className="text-primary">Afrique</span>
             </span>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Fonctionnalités
             </a>
-            <a href="#how-it-works" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Comment ça marche
             </a>
-            <a href="#platforms" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="#platforms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Plateformes
             </a>
-            <div className="flex items-center gap-1 text-muted-foreground">
-              <Globe className="w-4 h-4" />
-              <span className="text-sm">FR</span>
-            </div>
           </nav>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
+          {/* Right side */}
+          <div className="hidden md:flex items-center gap-4">
+            <button className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Globe className="w-4 h-4" />
+              FR
+            </button>
+            <Button variant="ghost" size="sm" className="text-muted-foreground">
               Connexion
             </Button>
-            <Button variant="hero" size="sm">
-              Commencer gratuitement
+            <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              Commencer
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground"
+            className="md:hidden text-foreground p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Menu"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-slide-up">
-            <nav className="flex flex-col gap-4">
-              <a href="#features" className="text-muted-foreground hover:text-primary transition-colors">
+          <div className="md:hidden py-4 border-t border-border/50">
+            <nav className="flex flex-col gap-3">
+              <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2">
                 Fonctionnalités
               </a>
-              <a href="#how-it-works" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2">
                 Comment ça marche
               </a>
-              <a href="#platforms" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="#platforms" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2">
                 Plateformes
               </a>
-              <div className="flex gap-3 pt-4">
+              <div className="flex gap-3 pt-4 border-t border-border/50">
                 <Button variant="ghost" size="sm" className="flex-1">
                   Connexion
                 </Button>
-                <Button variant="hero" size="sm" className="flex-1">
+                <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
                   Commencer
                 </Button>
               </div>
