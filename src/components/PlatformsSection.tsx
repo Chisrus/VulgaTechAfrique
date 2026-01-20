@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle, Send, ArrowRight, Check, ExternalLink } from "lucide-react";
 
 // Configuration - Remplacez par votre vrai nom de bot
-const TELEGRAM_BOT_USERNAME = "VulgaTechAfriqueBot";
+const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 const WHATSAPP_NUMBER = "+33123456789"; // Remplacez par votre numéro WhatsApp Business
 
 const platforms = [

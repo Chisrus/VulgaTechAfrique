@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Send, ExternalLink } from "lucide-react";
 
 // Configuration
-const TELEGRAM_BOT_USERNAME = "VulgaTechAfriqueBot";
+const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 
 const CTASection = () => {
   return (

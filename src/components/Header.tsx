@@ -3,7 +3,7 @@ import { Menu, X, Globe, Send } from "lucide-react";
 import { useState } from "react";
 
 // Configuration
-const TELEGRAM_BOT_USERNAME = "VulgaTechAfriqueBot";
+const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
