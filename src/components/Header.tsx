@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X, Globe, LogIn, User, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import AuthModal from "./AuthModal";
 import {
@@ -16,6 +17,7 @@ const Header = () => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
   const { user, signOut, loading } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,7 +108,14 @@ const Header = () => {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-48 bg-card border-border">
-                        <DropdownMenuItem className="text-muted-foreground">
+                        <DropdownMenuItem 
+                          onClick={() => navigate('/profil')} 
+                          className="cursor-pointer"
+                        >
+                          <User className="w-4 h-4 mr-2" />
+                          Mon profil
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="text-muted-foreground text-xs">
                           {user.email}
                         </DropdownMenuItem>
                         <DropdownMenuItem onClick={handleSignOut} className="text-destructive cursor-pointer">
