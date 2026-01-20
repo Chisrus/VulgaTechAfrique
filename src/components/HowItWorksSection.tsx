@@ -1,70 +1,80 @@
 import { MessageCircle, BookOpen, Trophy, Rocket } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
 
 const steps = [
   {
-    number: "1",
+    number: "01",
     icon: MessageCircle,
-    title: "Rejoignez le chatbot",
-    description: "Connectez-vous à notre bot WhatsApp ou Telegram en un clic.",
+    title: "Rejoignez le bot",
+    description: "Connectez-vous à notre bot WhatsApp ou Telegram en un clic. Aucune installation requise.",
+    color: "from-[#25D366] to-[#128C7E]",
   },
   {
-    number: "2",
+    number: "02",
     icon: BookOpen,
     title: "Choisissez votre parcours",
-    description: "Sélectionnez votre niveau : robotique, IA, programmation.",
+    description: "Robotique, IA, programmation Python... Sélectionnez votre niveau et vos objectifs.",
+    color: "from-primary to-primary/70",
   },
   {
-    number: "3",
+    number: "03",
     icon: Trophy,
-    title: "Apprenez à votre rythme",
-    description: "Recevez des leçons quotidiennes et complétez des quiz.",
+    title: "Apprenez chaque jour",
+    description: "Recevez des micro-leçons quotidiennes, complétez des quiz et gagnez des points.",
+    color: "from-accent to-accent/70",
   },
   {
-    number: "4",
+    number: "04",
     icon: Rocket,
-    title: "Construisez des projets",
-    description: "Mettez en pratique avec des projets réels guidés.",
+    title: "Créez des projets",
+    description: "Mettez en pratique avec des projets réels et construisez votre portfolio.",
+    color: "from-purple-500 to-purple-400",
   },
 ];
 
 const HowItWorksSection = () => {
   return (
-    <section id="how-it-works" className="py-16 md:py-20 lg:py-28 bg-card/30">
+    <section id="how-it-works" className="py-20 md:py-28 lg:py-32 bg-card/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-10 md:mb-14 max-w-2xl mx-auto">
-          <p className="text-primary font-medium text-sm uppercase tracking-wider mb-3">Comment ça marche</p>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 tracking-tight">
-            Commencez en 4 étapes
+        <AnimatedSection className="text-center mb-16 max-w-3xl mx-auto">
+          <span className="inline-block text-primary font-semibold text-sm uppercase tracking-widest mb-4">
+            Comment ça marche
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-5 tracking-tight">
+            4 étapes pour commencer
           </h2>
-          <p className="text-muted-foreground text-sm sm:text-base">
-            De zéro à la robotique en quelques minutes seulement.
+          <p className="text-lg text-muted-foreground">
+            De zéro à la robotique en quelques minutes. Sans installation, sans complication.
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Steps */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
+          {/* Connection Line (Desktop) */}
+          <div className="hidden lg:block absolute top-16 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
+          
           {steps.map((step, index) => (
-            <div key={step.number} className="relative">
-              {/* Connector line */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-[calc(50%+2rem)] right-0 h-px bg-border" />
-              )}
-              
-              <div className="bg-card rounded-xl p-5 sm:p-6 border border-border/50 relative hover:border-primary/30 transition-colors">
-                {/* Number */}
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-display font-bold text-sm mb-3 sm:mb-4">
-                  {step.number}
+            <AnimatedSection key={step.number} delay={index * 0.15}>
+              <div className="relative text-center lg:text-left">
+                {/* Step Number Circle */}
+                <div className="relative inline-flex mb-6 lg:mb-8">
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg`}>
+                    <step.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-background border-2 border-primary flex items-center justify-center text-xs font-bold text-primary">
+                    {step.number}
+                  </span>
                 </div>
 
-                <h3 className="font-display text-base sm:text-lg font-semibold mb-2 text-foreground">
+                <h3 className="font-display text-xl font-semibold mb-3 text-foreground">
                   {step.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {step.description}
                 </p>
               </div>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>

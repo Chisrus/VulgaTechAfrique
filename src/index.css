@@ -2,68 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Professional, clean design system */
+/* Premium, professional design system */
 
 @layer base {
   :root {
-    /* Clean dark theme */
-    --background: 222 20% 7%;
+    /* Deep, rich dark theme */
+    --background: 225 25% 6%;
     --foreground: 0 0% 98%;
 
-    --card: 222 18% 11%;
+    --card: 225 22% 10%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 222 18% 11%;
+    --popover: 225 22% 10%;
     --popover-foreground: 0 0% 98%;
 
-    /* Refined cyan primary */
-    --primary: 186 80% 48%;
-    --primary-foreground: 222 20% 7%;
+    /* Vibrant cyan primary */
+    --primary: 175 85% 45%;
+    --primary-foreground: 225 25% 6%;
 
-    /* Clean secondary */
-    --secondary: 222 15% 16%;
+    /* Rich secondary */
+    --secondary: 225 18% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 222 15% 20%;
-    --muted-foreground: 220 15% 60%;
+    --muted: 225 15% 18%;
+    --muted-foreground: 220 12% 55%;
 
-    /* Warm accent */
-    --accent: 25 95% 58%;
-    --accent-foreground: 222 20% 7%;
+    /* Warm coral accent */
+    --accent: 15 90% 55%;
+    --accent-foreground: 225 25% 6%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 222 15% 16%;
-    --input: 222 15% 16%;
-    --ring: 186 80% 48%;
+    --border: 225 15% 14%;
+    --input: 225 15% 14%;
+    --ring: 175 85% 45%;
 
-    --radius: 0.625rem;
+    --radius: 0.75rem;
 
-    /* Simplified gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(186 80% 48%) 0%, hsl(200 75% 42%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(222 20% 7%) 0%, hsl(222 20% 10%) 100%);
+    /* Premium gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(175 85% 45%) 0%, hsl(190 80% 40%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(225 25% 6%) 0%, hsl(225 22% 10%) 100%);
     
-    /* Cleaner shadows */
-    --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.15);
-    --shadow-md: 0 4px 12px hsl(0 0% 0% / 0.25);
-    --shadow-lg: 0 8px 24px hsl(0 0% 0% / 0.35);
+    /* Elegant shadows */
+    --shadow-sm: 0 2px 4px hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 8px 20px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 16px 40px hsl(0 0% 0% / 0.4);
+    --shadow-xl: 0 24px 60px hsl(0 0% 0% / 0.5);
 
-    --sidebar-background: 222 18% 9%;
+    --sidebar-background: 225 22% 8%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 186 80% 48%;
-    --sidebar-primary-foreground: 222 20% 7%;
-    --sidebar-accent: 222 15% 16%;
+    --sidebar-primary: 175 85% 45%;
+    --sidebar-primary-foreground: 225 25% 6%;
+    --sidebar-accent: 225 18% 15%;
     --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 222 15% 16%;
-    --sidebar-ring: 186 80% 48%;
+    --sidebar-border: 225 15% 14%;
+    --sidebar-ring: 175 85% 45%;
   }
 }
 
 /* Utility classes */
 @layer utilities {
   .text-gradient-primary {
-    background: linear-gradient(135deg, hsl(186 80% 48%) 0%, hsl(200 75% 55%) 100%);
+    background: linear-gradient(135deg, hsl(175 85% 50%) 0%, hsl(195 80% 55%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -76,13 +77,22 @@
   .shadow-soft {
     box-shadow: var(--shadow-md);
   }
+
+  .shadow-glow {
+    box-shadow: 0 0 40px hsl(175 85% 45% / 0.15);
+  }
+
+  /* Custom height for buttons */
+  .h-13 {
+    height: 3.25rem;
+  }
 }
 
 /* Smooth, subtle animations */
 @keyframes fade-up {
   from { 
     opacity: 0; 
-    transform: translateY(16px); 
+    transform: translateY(20px); 
   }
   to { 
     opacity: 1; 
@@ -95,8 +105,13 @@
   to { opacity: 1; }
 }
 
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
 .animate-fade-up {
-  animation: fade-up 0.5s ease-out forwards;
+  animation: fade-up 0.6s ease-out forwards;
 }
 
 .animate-fade-in {
@@ -116,5 +131,29 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(225 22% 10%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(225 15% 25%);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(225 15% 35%);
   }
 }
