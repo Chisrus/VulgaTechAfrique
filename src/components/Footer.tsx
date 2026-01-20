@@ -30,7 +30,9 @@ const Footer = () => {
                 <Twitter className="w-5 h-5" />
               </a>
               <a 
-                href="#" 
+                href="https://linkedin.com/company/vulgatechafrique" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-all"
                 aria-label="LinkedIn"
               >
