@@ -14,6 +14,117 @@ export type Database = {
   }
   public: {
     Tables: {
+      articles: {
+        Row: {
+          author_name: string
+          category: string
+          content: string | null
+          created_at: string
+          excerpt: string
+          id: string
+          is_published: boolean
+          read_time_minutes: number
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_name?: string
+          category?: string
+          content?: string | null
+          created_at?: string
+          excerpt: string
+          id?: string
+          is_published?: boolean
+          read_time_minutes?: number
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_name?: string
+          category?: string
+          content?: string | null
+          created_at?: string
+          excerpt?: string
+          id?: string
+          is_published?: boolean
+          read_time_minutes?: number
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      courses: {
+        Row: {
+          category: string
+          content_preview: string | null
+          created_at: string
+          description: string
+          difficulty: string
+          duration_minutes: number
+          id: string
+          is_free_preview: boolean
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          content_preview?: string | null
+          created_at?: string
+          description: string
+          difficulty?: string
+          duration_minutes?: number
+          id?: string
+          is_free_preview?: boolean
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          content_preview?: string | null
+          created_at?: string
+          description?: string
+          difficulty?: string
+          duration_minutes?: number
+          id?: string
+          is_free_preview?: boolean
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       telegram_conversations: {
         Row: {
           chat_id: number
