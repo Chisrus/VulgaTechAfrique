@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Send, Sparkles, ArrowRight } from "lucide-react";
+import { Send, ArrowRight } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
@@ -16,12 +16,6 @@ const CTASection = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8">
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-sm text-accent font-medium">100% Gratuit pour commencer</span>
-          </div>
-
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
             Prêt à rejoindre la
             <br />
