@@ -35,32 +35,32 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section id="features" className="py-20 lg:py-28">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section id="features" className="py-16 md:py-20 lg:py-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-14 max-w-2xl mx-auto">
+        <div className="text-center mb-10 md:mb-14 max-w-2xl mx-auto">
           <p className="text-primary font-medium text-sm uppercase tracking-wider mb-3">Fonctionnalités</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 tracking-tight">
             Tout pour apprendre efficacement
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm sm:text-base">
             Une plateforme complète conçue pour rendre la robotique et l'IA accessibles, 
             peu importe votre niveau.
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="bg-card rounded-xl p-6 border border-border/50 hover:border-border transition-colors"
+              className="bg-card rounded-xl p-5 sm:p-6 border border-border/50 hover:border-primary/30 transition-colors"
             >
-              <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <feature.icon className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-3 sm:mb-4">
+                <feature.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
               </div>
 
-              <h3 className="font-display text-lg font-semibold mb-2 text-foreground">
+              <h3 className="font-display text-base sm:text-lg font-semibold mb-2 text-foreground">
                 {feature.title}
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
