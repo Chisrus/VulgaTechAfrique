@@ -1,96 +1,157 @@
 import { Button } from "@/components/ui/button";
-import { MessageCircle, ArrowRight, Play, Send, ExternalLink } from "lucide-react";
-import heroImage from "@/assets/hero-robot-education.jpg";
+import { MessageCircle, Play, Send, ExternalLink, Sparkles, Users, BookOpen, Globe } from "lucide-react";
+import { motion } from "framer-motion";
+import heroImage from "@/assets/hero-africa-tech.jpg";
 
-// Configuration - même valeurs que PlatformsSection
 const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 sm:pt-20 pb-12 sm:pb-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+    <section className="relative min-h-screen flex items-center pt-20 sm:pt-24 pb-16 sm:pb-20 overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text Content */}
-          <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-6">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-              <span className="text-xs text-primary font-medium">Disponible en 10+ langues</span>
-            </div>
+          <motion.div 
+            className="max-w-xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm text-primary font-medium">Plateforme #1 en Afrique</span>
+            </motion.div>
 
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold mb-4 sm:mb-6 leading-[1.1] tracking-tight">
-              La robotique et l'IA{" "}
-              <span className="text-gradient-primary">accessible à tous</span>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-[1.1] tracking-tight">
+              Apprenez la{" "}
+              <span className="text-gradient-primary">robotique</span>
+              {" "}et l'
+              <span className="text-gradient-primary">IA</span>
+              {" "}simplement
             </h1>
 
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
-              Apprenez la robotique et l'intelligence artificielle directement depuis WhatsApp ou Telegram. 
-              Cours interactifs, projets pratiques et communauté africaine.
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Formation accessible via WhatsApp et Telegram. Cours interactifs, 
+              projets pratiques et support en <strong className="text-foreground">30+ langues africaines</strong>.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 asChild
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 h-11 sm:h-12 px-5 sm:px-6"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 h-13 px-8 text-base font-medium shadow-lg shadow-primary/25"
               >
                 <a href={`https://t.me/${TELEGRAM_BOT_USERNAME}`} target="_blank" rel="noopener noreferrer">
-                  <Send className="w-4 h-4" />
-                  Commencer sur Telegram
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <Send className="w-5 h-5" />
+                  Démarrer gratuitement
                 </a>
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-border hover:bg-secondary gap-2 h-11 sm:h-12 px-5 sm:px-6"
+                className="border-border/60 hover:bg-secondary gap-2 h-13 px-8 text-base"
                 onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Play className="w-4 h-4" />
-                Comment ça marche
+                <Play className="w-5 h-5" />
+                Voir la démo
               </Button>
             </div>
 
-            {/* Stats */}
-            <div className="flex gap-6 sm:gap-10 mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-border/50">
-              <div>
-                <p className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">50K+</p>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">Apprenants</p>
-              </div>
-              <div>
-                <p className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">120+</p>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">Cours</p>
-              </div>
-              <div>
-                <p className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">10+</p>
-                <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">Langues</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Image */}
-          <div className="relative lg:pl-8 order-first lg:order-last">
-            <div className="relative rounded-2xl overflow-hidden shadow-soft">
-              <img
-                src={heroImage}
-                alt="Robot enseignant la technologie à des étudiants"
-                className="w-full h-auto object-cover aspect-[4/3]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
-            </div>
-
-            {/* Floating Card */}
-            <div className="absolute -bottom-3 sm:-bottom-4 left-2 sm:-left-4 lg:left-0 bg-card p-3 sm:p-4 rounded-xl shadow-soft border border-border/50 max-w-[180px] sm:max-w-[200px]">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+            {/* Stats Row */}
+            <motion.div 
+              className="flex gap-8 sm:gap-12 mt-12 pt-8 border-t border-border/30"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Users className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm font-medium text-foreground">Chatbot 24/7</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground">Apprenez à votre rythme</p>
+                  <p className="font-display text-2xl font-bold text-foreground">50K+</p>
+                  <p className="text-sm text-muted-foreground">Apprenants</p>
                 </div>
               </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <BookOpen className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-display text-2xl font-bold text-foreground">120+</p>
+                  <p className="text-sm text-muted-foreground">Cours</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Globe className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-display text-2xl font-bold text-foreground">30+</p>
+                  <p className="text-sm text-muted-foreground">Langues</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Hero Image */}
+          <motion.div 
+            className="relative order-first lg:order-last"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
+              <img
+                src={heroImage}
+                alt="Étudiants africains apprenant la robotique et l'IA dans un lab moderne"
+                className="w-full h-auto object-cover aspect-video"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
             </div>
-          </div>
+
+            {/* Floating Cards */}
+            <motion.div 
+              className="absolute -bottom-4 -left-4 sm:-left-8 bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-xl border border-border/50"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center">
+                  <MessageCircle className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Chatbot 24/7</p>
+                  <p className="text-sm text-muted-foreground">Réponses instantanées</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="absolute -top-4 -right-4 sm:-right-8 bg-card/95 backdrop-blur-sm px-4 py-3 rounded-xl shadow-xl border border-border/50"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+            >
+              <div className="flex items-center gap-2">
+                <div className="flex -space-x-2">
+                  <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-xs font-bold">🇸🇳</div>
+                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-xs font-bold">🇨🇮</div>
+                  <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-xs font-bold">🇲🇱</div>
+                </div>
+                <span className="text-sm font-medium text-foreground">+47 pays</span>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
