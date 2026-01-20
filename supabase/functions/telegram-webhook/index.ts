@@ -5,23 +5,147 @@ const TELEGRAM_BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN")!;
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY")!;
+const HUGGINGFACE_API_KEY = Deno.env.get("HUGGINGFACE_API_KEY")!;
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+// African language codes and their names
+const AFRICAN_LANGUAGES: Record<string, string> = {
+  "sw": "Swahili",
+  "yo": "Yoruba", 
+  "ha": "Hausa",
+  "ig": "Igbo",
+  "am": "Amharic",
+  "zu": "Zulu",
+  "xh": "Xhosa",
+  "rw": "Kinyarwanda",
+  "sn": "Shona",
+  "so": "Somali",
+  "wo": "Wolof",
+  "tw": "Twi",
+  "lg": "Luganda",
+  "ln": "Lingala",
+  "mg": "Malagasy",
+  "ny": "Chichewa",
+  "st": "Sesotho",
+  "tn": "Setswana",
+};
 
 const SYSTEM_PROMPT = `Tu es VulgaTechAfrique, un assistant éducatif spécialisé dans la vulgarisation technologique pour l'Afrique.
 
 Ton rôle :
 - Expliquer des concepts technologiques de manière simple et accessible
 - Aider les étudiants et professionnels africains à apprendre la programmation, l'IA, et les nouvelles technologies
-- Répondre en français de manière claire et pédagogique
+- Répondre dans la langue de l'utilisateur de manière claire et pédagogique
 - Donner des exemples concrets et pertinents pour le contexte africain
 - Encourager et motiver les apprenants
+- Tu peux répondre en français, anglais, et plusieurs langues africaines
 
 Règles :
 - Sois concis mais complet
 - Utilise des analogies simples
 - Si tu ne sais pas, dis-le honnêtement
-- Adapte ton niveau au besoin de l'utilisateur`;
+- Adapte ton niveau au besoin de l'utilisateur
+- Réponds toujours dans la même langue que la question posée`;
+
+// Detect if text contains African language patterns using Hugging Face
+async function detectLanguage(text: string): Promise<string> {
+  try {
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/facebook/mms-lid-256",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${HUGGINGFACE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ inputs: text }),
+      }
+    );
+
+    if (!response.ok) {
+      console.log("Language detection failed, defaulting to French");
+      return "fr";
+    }
+
+    const result = await response.json();
+    if (Array.isArray(result) && result.length > 0) {
+      // Get the top prediction
+      const topLang = result[0]?.label || "fr";
+      console.log(`Detected language: ${topLang}`);
+      return topLang;
+    }
+    return "fr";
+  } catch (error) {
+    console.error("Language detection error:", error);
+    return "fr";
+  }
+}
+
+// Translate text using Hugging Face's African language models
+async function translateWithHuggingFace(text: string, sourceLang: string, targetLang: string): Promise<string> {
+  try {
+    // Use NLLB (No Language Left Behind) model for African languages
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/facebook/nllb-200-distilled-600M",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${HUGGINGFACE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          inputs: text,
+          parameters: {
+            src_lang: sourceLang,
+            tgt_lang: targetLang,
+          },
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      console.error("Translation failed:", await response.text());
+      return text;
+    }
+
+    const result = await response.json();
+    if (Array.isArray(result) && result[0]?.translation_text) {
+      return result[0].translation_text;
+    }
+    return text;
+  } catch (error) {
+    console.error("Translation error:", error);
+    return text;
+  }
+}
+
+// Map simple language codes to NLLB language codes
+function getNLLBCode(langCode: string): string {
+  const nllbCodes: Record<string, string> = {
+    "fr": "fra_Latn",
+    "en": "eng_Latn",
+    "sw": "swh_Latn",
+    "yo": "yor_Latn",
+    "ha": "hau_Latn",
+    "ig": "ibo_Latn",
+    "am": "amh_Ethi",
+    "zu": "zul_Latn",
+    "xh": "xho_Latn",
+    "rw": "kin_Latn",
+    "sn": "sna_Latn",
+    "so": "som_Latn",
+    "wo": "wol_Latn",
+    "tw": "twi_Latn",
+    "lg": "lug_Latn",
+    "ln": "lin_Latn",
+    "mg": "plt_Latn",
+    "ny": "nya_Latn",
+    "st": "sot_Latn",
+    "tn": "tsn_Latn",
+  };
+  return nllbCodes[langCode] || "fra_Latn";
+}
 
 async function sendTelegramMessage(chatId: number, text: string) {
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -38,7 +162,6 @@ async function sendTelegramMessage(chatId: number, text: string) {
 }
 
 async function getOrCreateConversation(chatId: number, username?: string, firstName?: string, lastName?: string) {
-  // Try to get existing conversation
   const { data: existing } = await supabase
     .from("telegram_conversations")
     .select("*")
@@ -49,7 +172,6 @@ async function getOrCreateConversation(chatId: number, username?: string, firstN
     return existing;
   }
 
-  // Create new conversation
   const { data: newConvo, error } = await supabase
     .from("telegram_conversations")
     .insert({
@@ -90,7 +212,8 @@ async function saveMessage(conversationId: string, chatId: number, messageId: nu
   });
 }
 
-async function getAIResponse(messages: { role: string; content: string }[]) {
+async function getAIResponse(messages: { role: string; content: string }[], userLanguage: string) {
+  // Get response from Lovable AI (which handles multiple languages well)
   const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -98,7 +221,7 @@ async function getAIResponse(messages: { role: string; content: string }[]) {
       "Authorization": `Bearer ${LOVABLE_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "google/gemini-2.5-flash",
+      model: "google/gemini-3-flash-preview",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         ...messages,
@@ -114,7 +237,19 @@ async function getAIResponse(messages: { role: string; content: string }[]) {
   }
 
   const data = await response.json();
-  return data.choices[0].message.content;
+  let aiResponse = data.choices[0].message.content;
+
+  // If user is using an African language, translate the response
+  if (userLanguage in AFRICAN_LANGUAGES) {
+    console.log(`Translating response to ${AFRICAN_LANGUAGES[userLanguage]}`);
+    aiResponse = await translateWithHuggingFace(
+      aiResponse,
+      getNLLBCode("fr"),
+      getNLLBCode(userLanguage)
+    );
+  }
+
+  return aiResponse;
 }
 
 serve(async (req) => {
@@ -173,14 +308,18 @@ serve(async (req) => {
       // Get or create conversation
       const conversation = await getOrCreateConversation(chatId, username, firstName, lastName);
 
+      // Detect user's language
+      const userLanguage = await detectLanguage(text);
+      console.log(`User language detected: ${userLanguage}`);
+
       // Save user message
       await saveMessage(conversation.id, chatId, messageId, "user", text);
 
       // Get conversation history
       const history = await getConversationHistory(conversation.id);
 
-      // Get AI response
-      const aiResponse = await getAIResponse(history);
+      // Get AI response with language support
+      const aiResponse = await getAIResponse(history, userLanguage);
 
       // Save AI response
       await saveMessage(conversation.id, chatId, messageId, "assistant", aiResponse);
