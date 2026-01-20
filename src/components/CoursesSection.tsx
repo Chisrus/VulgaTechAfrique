@@ -21,10 +21,10 @@ const difficultyColors: Record<string, string> = {
 };
 
 const categoryIcons: Record<string, string> = {
-  'robotique': '🤖',
-  'programmation': '💻',
-  'électronique': '⚡',
-  'ia': '🧠'
+  'robotique': ,
+  'programmation': ,
+  'électronique': ,
+  'ia': 
 };
 
 const CoursesSection = () => {
@@ -88,7 +88,7 @@ const CoursesSection = () => {
             <AnimatedSection key={course.id} delay={index * 0.1}>
               <div className="group bg-card border border-border/50 rounded-2xl p-6 h-full flex flex-col hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-3xl">{categoryIcons[course.category] || '📚'}</span>
+                  <span className="text-3xl">{categoryIcons[course.category] || }</span>
                   <span className={`text-xs font-medium px-2.5 py-1 rounded-full border ${difficultyColors[course.difficulty] || 'bg-muted text-muted-foreground'}`}>
                     {course.difficulty}
                   </span>
