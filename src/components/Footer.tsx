@@ -55,7 +55,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="mt-10 pt-8 border-t border-border/30 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">
-            © {currentYear} VulgaTechAfrique. Fait avec <Heart className="w-4 h-4 text-primary fill-primary" /> en Afrique.
+            © {currentYear} VulgaTechAfrique. Doing by Chisrus Dev <Heart className="w-4 h-4 text-primary fill-primary" /> en Afrique.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
