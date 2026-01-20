@@ -1,7 +1,7 @@
 import { MessageCircle, Send, Twitter, Linkedin, Github } from "lucide-react";
 
 // Configuration
-const TELEGRAM_BOT_USERNAME = "VulgaTechAfriqueBot";
+const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 const WHATSAPP_NUMBER = "+33123456789";
 
 const Footer = () => {

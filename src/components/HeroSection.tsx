@@ -3,7 +3,7 @@ import { MessageCircle, ArrowRight, Play, Send, ExternalLink } from "lucide-reac
 import heroImage from "@/assets/hero-robot-education.jpg";
 
 // Configuration - même valeurs que PlatformsSection
-const TELEGRAM_BOT_USERNAME = "VulgaTechAfriqueBot";
+const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 
 const HeroSection = () => {
   return (
