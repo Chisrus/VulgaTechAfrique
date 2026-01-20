@@ -11,24 +11,45 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
 // African language codes and their names
 const AFRICAN_LANGUAGES: Record<string, string> = {
+  // East African
   "sw": "Swahili",
-  "yo": "Yoruba", 
+  "lg": "Luganda",
+  "rw": "Kinyarwanda",
+  "so": "Somali",
+  "om": "Oromo",
+  "ti": "Tigrinya",
+  
+  // West African
+  "yo": "Yoruba",
   "ha": "Hausa",
   "ig": "Igbo",
-  "am": "Amharic",
-  "zu": "Zulu",
-  "xh": "Xhosa",
-  "rw": "Kinyarwanda",
-  "sn": "Shona",
-  "so": "Somali",
   "wo": "Wolof",
   "tw": "Twi",
-  "lg": "Luganda",
+  "ak": "Akan",
+  "bm": "Bambara",
+  "ff": "Fula/Fulfulde",
+  "ee": "Ewe",
+  "fon": "Fon",
+  "mos": "Mooré/Mossi",
+  "bci": "Baoulé", // Mapped to Akan
+  
+  // Central African
   "ln": "Lingala",
-  "mg": "Malagasy",
+  "kg": "Kikongo",
+  
+  // Southern African
+  "zu": "Zulu",
+  "xh": "Xhosa",
+  "sn": "Shona",
   "ny": "Chichewa",
   "st": "Sesotho",
   "tn": "Setswana",
+  
+  // Horn of Africa
+  "am": "Amharic",
+  
+  // Island
+  "mg": "Malagasy",
 };
 
 const SYSTEM_PROMPT = `Tu es VulgaTechAfrique, un assistant éducatif spécialisé dans la vulgarisation technologique pour l'Afrique.
@@ -123,26 +144,49 @@ async function translateWithHuggingFace(text: string, sourceLang: string, target
 // Map simple language codes to NLLB language codes
 function getNLLBCode(langCode: string): string {
   const nllbCodes: Record<string, string> = {
+    // European
     "fr": "fra_Latn",
     "en": "eng_Latn",
+    
+    // East African
     "sw": "swh_Latn",
+    "lg": "lug_Latn",
+    "rw": "kin_Latn",
+    "so": "som_Latn",
+    "om": "orm_Latn",
+    "ti": "tir_Ethi",
+    
+    // West African
     "yo": "yor_Latn",
     "ha": "hau_Latn",
     "ig": "ibo_Latn",
-    "am": "amh_Ethi",
-    "zu": "zul_Latn",
-    "xh": "xho_Latn",
-    "rw": "kin_Latn",
-    "sn": "sna_Latn",
-    "so": "som_Latn",
     "wo": "wol_Latn",
     "tw": "twi_Latn",
-    "lg": "lug_Latn",
+    "ak": "aka_Latn",
+    "bm": "bam_Latn",
+    "ff": "fuv_Latn",
+    "ee": "ewe_Latn",
+    "fon": "fon_Latn",
+    "mos": "mos_Latn",
+    "bci": "aka_Latn", // Baoulé mapped to Akan (linguistically close)
+    
+    // Central African
     "ln": "lin_Latn",
-    "mg": "plt_Latn",
+    "kg": "kon_Latn",
+    
+    // Southern African
+    "zu": "zul_Latn",
+    "xh": "xho_Latn",
+    "sn": "sna_Latn",
     "ny": "nya_Latn",
     "st": "sot_Latn",
     "tn": "tsn_Latn",
+    
+    // Horn of Africa
+    "am": "amh_Ethi",
+    
+    // Island
+    "mg": "plt_Latn",
   };
   return nllbCodes[langCode] || "fra_Latn";
 }
@@ -288,8 +332,54 @@ serve(async (req) => {
       if (text === "/help") {
         await sendTelegramMessage(
           chatId,
-          `🆘 *Aide VulgaTechAfrique*\n\n*Commandes :*\n/start - Démarrer le bot\n/help - Afficher cette aide\n/clear - Effacer l'historique\n\n*Comment m'utiliser :*\nEnvoie simplement ta question et je te répondrai !\n\nExemples :\n• "Qu'est-ce que Python ?"\n• "Comment créer un site web ?"\n• "Explique-moi l'IA"`
+          `🆘 *Aide VulgaTechAfrique*\n\n*Commandes :*\n/start - Démarrer le bot\n/help - Afficher cette aide\n/languages - Voir les langues supportées\n/clear - Effacer l'historique\n\n*Comment m'utiliser :*\nEnvoie simplement ta question et je te répondrai !\n\nExemples :\n• "Qu'est-ce que Python ?"\n• "Comment créer un site web ?"\n• "Explique-moi l'IA"`
         );
+        return new Response("OK", { status: 200 });
+      }
+
+      // Handle /languages command
+      if (text === "/languages") {
+        const languagesList = `🌍 *Langues Africaines Supportées*\n
+*Afrique de l'Ouest :*
+• Bambara (Mali)
+• Yoruba (Nigeria)
+• Hausa (Nigeria/Niger)
+• Igbo (Nigeria)
+• Wolof (Sénégal)
+• Twi/Akan (Ghana)
+• Baoulé (Côte d'Ivoire) ⚠️
+• Fula/Fulfulde
+• Ewe (Ghana/Togo)
+• Fon (Bénin)
+• Mooré (Burkina Faso)
+
+*Afrique de l'Est :*
+• Swahili
+• Luganda (Ouganda)
+• Kinyarwanda
+• Somali
+• Oromo (Éthiopie)
+• Tigrinya (Érythrée/Éthiopie)
+
+*Afrique Centrale :*
+• Lingala (RDC/Congo)
+• Kikongo
+
+*Afrique Australe :*
+• Zulu
+• Xhosa
+• Shona (Zimbabwe)
+• Chichewa (Malawi)
+• Sesotho
+• Setswana
+
+*Autres :*
+• Amharic (Éthiopie)
+• Malagasy (Madagascar)
+
+⚠️ _Le Baoulé utilise l'Akan comme approximation_`;
+        
+        await sendTelegramMessage(chatId, languagesList);
         return new Response("OK", { status: 200 });
       }
 
