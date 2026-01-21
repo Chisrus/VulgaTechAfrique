@@ -18,7 +18,7 @@ const Footer = () => {
               </span>
             </a>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Démocratiser la robotique et l'IA pour tous en Afrique.<br>La Technologie au service d'une Afrique plus resiliente
+              Démocratiser la robotique et l'IA pour tous en Afrique.<br />La Technologie au service d'une Afrique plus resiliente
             </p>
           </div>
 
