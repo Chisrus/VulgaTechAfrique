@@ -1,21 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Send, Check, ExternalLink, Smartphone } from "lucide-react";
+import { MessageCircle, Send, Check, ExternalLink, Smartphone, Clock } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import { useToast } from "@/hooks/use-toast";
 
 const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
-const WHATSAPP_NUMBER = "+33123456789";
 
 const platforms = [
-  {
-    name: "WhatsApp",
-    icon: MessageCircle,
-    color: "bg-[#25D366]",
-    gradient: "from-[#25D366] to-[#128C7E]",
-    description: "Apprenez directement depuis votre messagerie préférée. Simple et accessible.",
-    features: ["Cours interactifs", "Quiz automatiques", "Support vocal", "Notifications"],
-    cta: "Rejoindre sur WhatsApp",
-    link: `https://wa.me/${WHATSAPP_NUMBER.replace(/[^0-9]/g, '')}?text=${encodeURIComponent("Bonjour ! Je souhaite apprendre la robotique avec VulgaTechAfrique.")}`,
-  },
   {
     name: "Telegram",
     icon: Send,
@@ -25,10 +15,34 @@ const platforms = [
     features: ["Groupes d'étude", "Fichiers & médias", "Bots interactifs", "Channels"],
     cta: "Rejoindre sur Telegram",
     link: `https://t.me/${TELEGRAM_BOT_USERNAME}`,
+    isAvailable: true,
+  },
+  {
+    name: "WhatsApp",
+    icon: MessageCircle,
+    color: "bg-[#25D366]",
+    gradient: "from-[#25D366] to-[#128C7E]",
+    description: "Apprenez directement depuis votre messagerie préférée. Simple et accessible.",
+    features: ["Cours interactifs", "Quiz automatiques", "Support vocal", "Notifications"],
+    cta: "Bientôt disponible",
+    link: "#",
+    isAvailable: false,
   },
 ];
 
 const PlatformsSection = () => {
+  const { toast } = useToast();
+
+  const handlePlatformClick = (platform: typeof platforms[0], e: React.MouseEvent) => {
+    if (!platform.isAvailable) {
+      e.preventDefault();
+      toast({
+        title: "Fonctionnalité bientôt disponible",
+        description: "L'accès via WhatsApp sera disponible prochainement. En attendant, rejoignez-nous sur Telegram !",
+      });
+    }
+  };
+
   return (
     <section id="platforms" className="py-20 md:py-28 lg:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,15 +64,23 @@ const PlatformsSection = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {platforms.map((platform, index) => (
             <AnimatedSection key={platform.name} delay={index * 0.15}>
-              <div className="group relative h-full bg-card rounded-3xl p-8 lg:p-10 border border-border/50 overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5">
+              <div className={`group relative h-full bg-card rounded-3xl p-8 lg:p-10 border border-border/50 overflow-hidden transition-all duration-300 ${platform.isAvailable ? 'hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5' : 'opacity-75'}`}>
                 {/* Background gradient on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${platform.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${platform.gradient} opacity-0 ${platform.isAvailable ? 'group-hover:opacity-5' : ''} transition-opacity duration-500`} />
+                
+                {/* Coming Soon Badge */}
+                {!platform.isAvailable && (
+                  <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted text-muted-foreground text-xs font-medium">
+                    <Clock className="w-3 h-3" />
+                    Bientôt
+                  </div>
+                )}
                 
                 <div className="relative z-10">
                   {/* Platform Header */}
                   <div className="flex items-start justify-between mb-6">
                     <div className="flex items-center gap-4">
-                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${platform.gradient} flex items-center justify-center shadow-lg`}>
+                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${platform.gradient} flex items-center justify-center shadow-lg ${!platform.isAvailable ? 'grayscale' : ''}`}>
                         <platform.icon className="w-7 h-7 text-white" />
                       </div>
                       <div>
@@ -88,14 +110,23 @@ const PlatformsSection = () => {
 
                   {/* CTA */}
                   <Button
-                    asChild
+                    asChild={platform.isAvailable}
                     size="lg"
-                    className={`w-full bg-gradient-to-r ${platform.gradient} hover:opacity-90 text-white gap-2 h-13 text-base font-medium shadow-lg`}
+                    disabled={!platform.isAvailable}
+                    onClick={(e) => handlePlatformClick(platform, e)}
+                    className={`w-full ${platform.isAvailable ? `bg-gradient-to-r ${platform.gradient} hover:opacity-90 text-white` : 'bg-muted text-muted-foreground cursor-not-allowed'} gap-2 h-13 text-base font-medium shadow-lg`}
                   >
-                    <a href={platform.link} target="_blank" rel="noopener noreferrer">
-                      {platform.cta}
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
+                    {platform.isAvailable ? (
+                      <a href={platform.link} target="_blank" rel="noopener noreferrer">
+                        {platform.cta}
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    ) : (
+                      <>
+                        <Clock className="w-4 h-4" />
+                        {platform.cta}
+                      </>
+                    )}
                   </Button>
                 </div>
               </div>
