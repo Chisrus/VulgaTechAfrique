@@ -55,7 +55,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="mt-10 pt-8 border-t border-border/30 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">
-            © {currentYear} VulgaTechAfrique. Doing by Coffi Chris Kouqkou "Chisrus Dev".
+            © {currentYear} VulgaTechAfrique. Doing by Coffi Chris Kouakou "Chisrus Dev".
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
