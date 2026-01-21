@@ -30,7 +30,7 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Formation accessible via WhatsApp et Telegram. Cours interactifs, 
+              Accédez à nos formations directement depuis Telegram. Cours interactifs, 
               projets pratiques et support en <strong className="text-foreground">30+ langues africaines</strong>.
             </p>
 
@@ -135,9 +135,9 @@ const HeroSection = () => {
             >
               <div className="flex items-center gap-2">
                 <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-xs font-bold">🇸🇳</div>
-                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-xs font-bold">🇨🇮</div>
-                  <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-xs font-bold">🇲🇱</div>
+                  <div className="w-8 h-8 rounded-full bg-green-500" />
+                  <div className="w-8 h-8 rounded-full bg-primary" />
+                  <div className="w-8 h-8 rounded-full bg-yellow-500" />
                 </div>
                 <span className="text-sm font-medium text-foreground">+47 pays</span>
               </div>

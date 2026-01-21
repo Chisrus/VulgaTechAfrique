@@ -4,9 +4,6 @@ import AnimatedSection from "./AnimatedSection";
 
 const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 
-// African country flags
-const africanFlags = ["🇸🇳", "🇨🇮", "🇲🇱", "🇧🇫", "🇳🇬", "🇬🇭", "🇰🇪", "🇹🇿", "🇪🇹", "🇨🇲", "🇨🇩", "🇲🇦"];
-
 const CTASection = () => {
   return (
     <section className="py-20 md:py-28 lg:py-32 relative overflow-hidden">
@@ -47,21 +44,6 @@ const CTASection = () => {
               Voir les plateformes
               <ArrowRight className="w-5 h-5" />
             </Button>
-          </div>
-
-          {/* African flags display */}
-          <div className="pt-8 border-t border-border/30">
-            <p className="text-sm text-muted-foreground mb-4">Apprenants dans toute l'Afrique</p>
-            <div className="flex justify-center gap-2 flex-wrap">
-              {africanFlags.map((flag, index) => (
-                <span 
-                  key={index} 
-                  className="text-2xl sm:text-3xl opacity-80 hover:opacity-100 hover:scale-125 transition-all duration-200 cursor-default"
-                >
-                  {flag}
-                </span>
-              ))}
-            </div>
           </div>
         </AnimatedSection>
       </div>
