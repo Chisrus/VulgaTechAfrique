@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import AnimatedSection from './AnimatedSection';
 import { Clock, BookOpen, ArrowRight, Cpu, Lightbulb, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
 
 interface Course {
   id: string;
@@ -33,7 +33,7 @@ const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 const CoursesSection = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -52,14 +52,8 @@ const CoursesSection = () => {
     fetchCourses();
   }, []);
 
-  const handleViewCourse = () => {
-    toast({
-      title: "Contenu disponible sur Telegram",
-      description: "Accédez à ce cours complet via notre bot Telegram. Cliquez pour y accéder !",
-    });
-    setTimeout(() => {
-      window.open(`https://t.me/${TELEGRAM_BOT_USERNAME}`, '_blank');
-    }, 1500);
+  const handleViewCourse = (courseId: string) => {
+    navigate(`/cours/${courseId}`);
   };
 
   if (loading) {
@@ -128,7 +122,7 @@ const CoursesSection = () => {
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      onClick={handleViewCourse}
+                      onClick={() => handleViewCourse(course.id)}
                       className="text-primary hover:text-primary hover:bg-primary/10 group/btn gap-1"
                     >
                       Voir le cours
