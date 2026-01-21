@@ -14,17 +14,46 @@ export interface Language {
   nativeName: string;
 }
 
-const languages: Language[] = [
+export const languages: Language[] = [
+  // Langues principales
   { code: 'fr', name: 'French', nativeName: 'Français' },
   { code: 'en', name: 'English', nativeName: 'English' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português' },
+  
+  // Afrique de l'Ouest
   { code: 'bm', name: 'Bambara', nativeName: 'Bamanankan' },
-  { code: 'sw', name: 'Swahili', nativeName: 'Kiswahili' },
   { code: 'wo', name: 'Wolof', nativeName: 'Wolof' },
+  { code: 'ff', name: 'Fulani', nativeName: 'Fulfulde' },
   { code: 'ha', name: 'Hausa', nativeName: 'Hausa' },
   { code: 'yo', name: 'Yoruba', nativeName: 'Yorùbá' },
   { code: 'ig', name: 'Igbo', nativeName: 'Igbo' },
+  { code: 'ee', name: 'Ewe', nativeName: 'Eʋegbe' },
+  { code: 'ak', name: 'Akan/Twi', nativeName: 'Akan' },
+  { code: 'mos', name: 'Mooré', nativeName: 'Mooré' },
+  { code: 'fon', name: 'Fon', nativeName: 'Fɔngbè' },
+  
+  // Afrique de l'Est
+  { code: 'sw', name: 'Swahili', nativeName: 'Kiswahili' },
   { code: 'am', name: 'Amharic', nativeName: 'አማርኛ' },
+  { code: 'om', name: 'Oromo', nativeName: 'Afaan Oromoo' },
+  { code: 'so', name: 'Somali', nativeName: 'Soomaali' },
+  { code: 'rw', name: 'Kinyarwanda', nativeName: 'Ikinyarwanda' },
+  { code: 'lg', name: 'Luganda', nativeName: 'Luganda' },
+  
+  // Afrique Australe
   { code: 'zu', name: 'Zulu', nativeName: 'isiZulu' },
+  { code: 'xh', name: 'Xhosa', nativeName: 'isiXhosa' },
+  { code: 'st', name: 'Sesotho', nativeName: 'Sesotho' },
+  { code: 'tn', name: 'Setswana', nativeName: 'Setswana' },
+  { code: 'sn', name: 'Shona', nativeName: 'chiShona' },
+  
+  // Afrique Centrale
+  { code: 'ln', name: 'Lingala', nativeName: 'Lingála' },
+  { code: 'kg', name: 'Kikongo', nativeName: 'Kikongo' },
+  
+  // Afrique du Nord
+  { code: 'ber', name: 'Tamazight', nativeName: 'ⵜⴰⵎⴰⵣⵉⵖⵜ' },
 ];
 
 interface LanguageSelectorProps {
@@ -73,4 +102,3 @@ const LanguageSelector = ({
 };
 
 export default LanguageSelector;
-export { languages };
