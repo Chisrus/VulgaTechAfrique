@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Play, Send, ExternalLink, Sparkles, Users, BookOpen, Globe } from "lucide-react";
+import { MessageCircle, Play, Send, ExternalLink, Sparkles, Users, BookOpen, Globe, Heart, Ear, Home, HandHeart } from "lucide-react";
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-africa-tech.jpg";
 
@@ -20,18 +20,28 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
+            {/* Inclusion Badge */}
+            <motion.div
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/80 text-accent-foreground text-xs font-medium mb-6 border border-accent-foreground/10"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              <Heart className="w-3.5 h-3.5 text-primary" />
+              <span>Accessible à tous • Villages • Zones rurales • Sourds et malentendants</span>
+            </motion.div>
 
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-[1.1] tracking-tight">
-              Apprenez la{" "}
-              <span className="text-gradient-primary">robotique</span>
-              {" "}et l'
-              <span className="text-gradient-primary">IA</span>
-              {" "}simplement
+              La tech pour{" "}
+              <span className="text-gradient-primary">tous</span>
+              {", "}
+              <span className="text-gradient-primary">partout</span>
             </h1>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Accédez à nos formations directement depuis Telegram. Cours interactifs, 
-              projets pratiques et support en <strong className="text-foreground">30+ langues africaines</strong>.
+              Nous démocratisons la <strong className="text-foreground">robotique</strong> et l'<strong className="text-foreground">IA</strong> pour chaque africain : 
+              villageois, ruraux, personnes sourdes ou malentendantes. Cours en <strong className="text-foreground">30+ langues africaines</strong> 
+              {" "}via Telegram, adaptés à votre rythme et votre contexte.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
