@@ -4,6 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LanguageSelector, { Language } from '@/components/LanguageSelector';
+import CourseChat from '@/components/CourseChat';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Clock, User, FileText, Loader2, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -285,6 +286,13 @@ const ArticleDetail = () => {
         </article>
       </main>
       <Footer />
+      
+      {/* Chat IA pédagogique */}
+      <CourseChat
+        courseTitle={article.title}
+        courseContent={article.content || article.excerpt}
+        language={selectedLanguage}
+      />
     </div>
   );
 };
