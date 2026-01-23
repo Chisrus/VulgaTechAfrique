@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import AnimatedSection from './AnimatedSection';
 import { Clock, FileText, ArrowRight, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
-
-const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 
 interface Article {
   id: string;
@@ -26,16 +24,10 @@ const categoryLabels: Record<string, { label: string; color: string }> = {
 const ArticlesSection = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
+  const navigate = useNavigate();
 
-  const handleReadArticle = () => {
-    toast({
-      title: "Contenu disponible sur Telegram",
-      description: "Accédez à cet article complet via notre bot Telegram.",
-    });
-    setTimeout(() => {
-      window.open(`https://t.me/${TELEGRAM_BOT_USERNAME}`, '_blank');
-    }, 1500);
+  const handleReadArticle = (articleId: string) => {
+    navigate(`/article/${articleId}`);
   };
 
   useEffect(() => {
@@ -134,7 +126,7 @@ const ArticlesSection = () => {
                   <Button 
                     variant="ghost" 
                     size="sm"
-                    onClick={handleReadArticle}
+                    onClick={() => handleReadArticle(article.id)}
                     className="text-primary hover:text-primary hover:bg-primary/10 group/btn gap-1"
                   >
                     Lire
