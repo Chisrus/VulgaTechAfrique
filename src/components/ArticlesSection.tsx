@@ -139,7 +139,12 @@ const ArticlesSection = () => {
         </div>
 
         <AnimatedSection delay={0.4} className="text-center mt-12">
-          <Button variant="outline" size="lg" className="gap-2 border-border hover:border-primary/50">
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="gap-2 border-border hover:border-primary/50"
+            onClick={() => window.location.href = '/articles'}
+          >
             Voir tous les articles
             <ArrowRight className="w-4 h-4" />
           </Button>
