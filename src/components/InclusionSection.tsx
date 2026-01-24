@@ -72,12 +72,11 @@ const InclusionSection = () => {
                   muted
                   playsInline
                 >
-                  <track 
-                    kind="subtitles" 
-                    src="/subtitles/sign-language-intro-fr.vtt" 
-                    srcLang="fr" 
-                    label="Français"
-                  />
+                  <track kind="subtitles" src="/subtitles/sign-language-intro-fr.vtt" srcLang="fr" label="Français" />
+                  <track kind="subtitles" src="/subtitles/sign-language-intro-en.vtt" srcLang="en" label="English" />
+                  <track kind="subtitles" src="/subtitles/sign-language-intro-bm.vtt" srcLang="bm" label="Bambara" />
+                  <track kind="subtitles" src="/subtitles/sign-language-intro-wo.vtt" srcLang="wo" label="Wolof" />
+                  <track kind="subtitles" src="/subtitles/sign-language-intro-sw.vtt" srcLang="sw" label="Swahili" />
                 </video>
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
                   <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-primary/30">
@@ -132,13 +131,11 @@ const InclusionSection = () => {
                 autoPlay
                 playsInline
               >
-                <track 
-                  kind="subtitles" 
-                  src="/subtitles/sign-language-intro-fr.vtt" 
-                  srcLang="fr" 
-                  label="Français"
-                  default
-                />
+                <track kind="subtitles" src="/subtitles/sign-language-intro-fr.vtt" srcLang="fr" label="Français" default />
+                <track kind="subtitles" src="/subtitles/sign-language-intro-en.vtt" srcLang="en" label="English" />
+                <track kind="subtitles" src="/subtitles/sign-language-intro-bm.vtt" srcLang="bm" label="Bambara" />
+                <track kind="subtitles" src="/subtitles/sign-language-intro-wo.vtt" srcLang="wo" label="Wolof" />
+                <track kind="subtitles" src="/subtitles/sign-language-intro-sw.vtt" srcLang="sw" label="Swahili" />
               </video>
             </div>
           </DialogContent>
