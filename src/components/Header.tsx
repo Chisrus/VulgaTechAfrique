@@ -52,42 +52,53 @@ const Header = () => {
       }`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
-            {/* Logo */}
+            {/* Logo with Slogan */}
             <a href="/" className="flex items-center gap-2.5 group">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-primary flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
                 <span className="text-primary-foreground font-bold text-sm sm:text-base">VT</span>
               </div>
-              <span className="font-display text-lg sm:text-xl font-semibold text-foreground tracking-tight">
-                VulgaTech<span className="text-primary">Afrique</span>
-              </span>
+              <div className="flex flex-col">
+                <span className="font-display text-lg sm:text-xl font-semibold text-foreground tracking-tight leading-tight">
+                  VulgaTech<span className="text-primary">Afrique</span>
+                </span>
+                <span className="hidden sm:block text-[10px] text-muted-foreground font-medium tracking-wide">
+                  La tech pour tous, partout
+                </span>
+              </div>
             </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8 lg:gap-10">
-              <button 
-                onClick={() => handleNavClick('courses')} 
+            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+              <a 
+                href="/" 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+              >
+                Accueil
+              </a>
+              <a 
+                href="/cours" 
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
                 Cours
-              </button>
-              <button 
-                onClick={() => handleNavClick('articles')} 
+              </a>
+              <a 
+                href="/articles" 
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
                 Articles
-              </button>
+              </a>
               <button 
-                onClick={() => handleNavClick('features')} 
+                onClick={() => handleNavClick('inclusion')} 
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
-                Fonctionnalités
+                Inclusion
               </button>
-              <button 
-                onClick={() => handleNavClick('how-it-works')} 
+              <a 
+                href="/a-propos" 
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
-                Comment ça marche
-              </button>
+                À propos
+              </a>
             </nav>
 
             {/* Right side */}
@@ -160,30 +171,36 @@ const Header = () => {
           {isMenuOpen && (
             <div className="md:hidden py-6 border-t border-border/50 bg-background/95 backdrop-blur-lg animate-fade-in">
               <nav className="flex flex-col gap-1">
-                <button 
-                  onClick={() => handleNavClick('courses')} 
+                <a 
+                  href="/" 
+                  className="text-base text-muted-foreground hover:text-foreground transition-colors py-3 text-left font-medium"
+                >
+                  Accueil
+                </a>
+                <a 
+                  href="/cours" 
                   className="text-base text-muted-foreground hover:text-foreground transition-colors py-3 text-left font-medium"
                 >
                   Cours
-                </button>
-                <button 
-                  onClick={() => handleNavClick('articles')} 
+                </a>
+                <a 
+                  href="/articles" 
                   className="text-base text-muted-foreground hover:text-foreground transition-colors py-3 text-left font-medium"
                 >
                   Articles
-                </button>
+                </a>
                 <button 
-                  onClick={() => handleNavClick('features')} 
+                  onClick={() => { handleNavClick('inclusion'); }} 
                   className="text-base text-muted-foreground hover:text-foreground transition-colors py-3 text-left font-medium"
                 >
-                  Fonctionnalités
+                  Inclusion
                 </button>
-                <button 
-                  onClick={() => handleNavClick('how-it-works')} 
+                <a 
+                  href="/a-propos" 
                   className="text-base text-muted-foreground hover:text-foreground transition-colors py-3 text-left font-medium"
                 >
-                  Comment ça marche
-                </button>
+                  À propos
+                </a>
                 
                 <div className="pt-6 mt-4 border-t border-border/50 space-y-3">
                   {!loading && (

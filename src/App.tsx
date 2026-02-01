@@ -7,8 +7,10 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Profile from "./pages/Profile";
 import CourseDetail from "./pages/CourseDetail";
+import Courses from "./pages/Courses";
 import ArticleDetail from "./pages/ArticleDetail";
 import Articles from "./pages/Articles";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,9 +25,11 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/profil" element={<Profile />} />
+            <Route path="/cours" element={<Courses />} />
             <Route path="/cours/:id" element={<CourseDetail />} />
             <Route path="/article/:id" element={<ArticleDetail />} />
             <Route path="/articles" element={<Articles />} />
+            <Route path="/a-propos" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

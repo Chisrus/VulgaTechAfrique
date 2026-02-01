@@ -90,7 +90,7 @@ const CoursesSection = () => {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           {courses.map((course, index) => {
             const CategoryIcon = categoryIcons[course.category] || BookOpen;
             return (
@@ -134,6 +134,24 @@ const CoursesSection = () => {
             );
           })}
         </div>
+
+        {/* View All Button */}
+        <AnimatedSection delay={0.4} className="text-center">
+          <Button 
+            asChild
+            variant="outline" 
+            size="lg"
+            className="gap-2 border-primary/50 text-primary hover:bg-primary/10"
+          >
+            <a href="/cours">
+              Voir tous les cours
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </Button>
+          <p className="text-sm text-muted-foreground mt-3">
+            💬 Chat IA intégré pour vous accompagner dans chaque cours
+          </p>
+        </AnimatedSection>
       </div>
     </section>
   );
