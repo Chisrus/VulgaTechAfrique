@@ -36,7 +36,7 @@ const InclusionSection = () => {
   const [videoOpen, setVideoOpen] = useState(false);
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
+    <section id="inclusion" className="py-20 md:py-28 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/30 to-transparent pointer-events-none" />
       

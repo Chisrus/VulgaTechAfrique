@@ -24,17 +24,17 @@ const Footer = () => {
 
           {/* Links */}
           <nav className="flex flex-wrap gap-6 text-sm">
-            <a href="#courses" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/cours" className="text-muted-foreground hover:text-foreground transition-colors">
               Cours
             </a>
-            <a href="#articles" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors">
               Articles
             </a>
-            <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
-              Fonctionnalités
+            <a href="#inclusion" className="text-muted-foreground hover:text-foreground transition-colors">
+              Inclusion
             </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Contact
+            <a href="/a-propos" className="text-muted-foreground hover:text-foreground transition-colors">
+              À propos
             </a>
           </nav>
 

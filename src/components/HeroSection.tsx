@@ -44,25 +44,36 @@ const HeroSection = () => {
               {" "}via Telegram, adaptés à votre rythme et votre contexte.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Button 
                 asChild
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 h-13 px-8 text-base font-medium shadow-lg shadow-primary/25"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 h-12 px-6 text-base font-medium shadow-lg shadow-primary/25"
               >
-                <a href={`https://t.me/${TELEGRAM_BOT_USERNAME}`} target="_blank" rel="noopener noreferrer">
-                  <Send className="w-5 h-5" />
-                  Démarrer gratuitement
+                <a href="/cours">
+                  <BookOpen className="w-5 h-5" />
+                  Commencer un cours
                 </a>
               </Button>
               <Button 
+                asChild
                 variant="outline" 
                 size="lg"
-                className="border-border/60 hover:bg-secondary gap-2 h-13 px-8 text-base"
-                onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+                className="border-border/60 hover:bg-secondary gap-2 h-12 px-6 text-base"
               >
-                <Play className="w-5 h-5" />
-                Voir la démo
+                <a href="/articles">
+                  <ExternalLink className="w-5 h-5" />
+                  Lire un article
+                </a>
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="lg"
+                className="text-primary hover:text-primary hover:bg-primary/10 gap-2 h-12 px-6 text-base"
+                onClick={() => document.getElementById('inclusion')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <Heart className="w-5 h-5" />
+                Nos valeurs
               </Button>
             </div>
 
