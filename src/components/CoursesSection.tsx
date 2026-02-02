@@ -4,6 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import AnimatedSection from './AnimatedSection';
 import { Clock, BookOpen, ArrowRight, Cpu, Lightbulb, Brain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 interface Course {
   id: string;
@@ -13,12 +14,13 @@ interface Course {
   duration_minutes: number;
   category: string;
   content_preview: string | null;
+  thumbnail_url: string | null;
 }
 
 const difficultyColors: Record<string, string> = {
-  'débutant': 'bg-green-500/10 text-green-400',
-  'intermédiaire': 'bg-yellow-500/10 text-yellow-400',
-  'avancé': 'bg-red-500/10 text-red-400'
+  'débutant': 'bg-green-500/20 text-green-400 border border-green-500/30',
+  'intermédiaire': 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30',
+  'avancé': 'bg-red-500/20 text-red-400 border border-red-500/30'
 };
 
 const categoryIcons: Record<string, React.ElementType> = {
@@ -28,7 +30,12 @@ const categoryIcons: Record<string, React.ElementType> = {
   'ia': Brain
 };
 
-const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
+const categoryImages: Record<string, string> = {
+  'robotique': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop',
+  'programmation': 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop',
+  'électronique': 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop',
+  'ia': 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop'
+};
 
 const CoursesSection = () => {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -64,9 +71,9 @@ const CoursesSection = () => {
             <div className="h-8 w-48 bg-muted rounded animate-pulse mx-auto mb-4" />
             <div className="h-4 w-96 bg-muted rounded animate-pulse mx-auto" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-card rounded-2xl p-6 h-48 animate-pulse" />
+              <div key={i} className="bg-card rounded-2xl h-80 animate-pulse" />
             ))}
           </div>
         </div>
@@ -90,44 +97,67 @@ const CoursesSection = () => {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {courses.map((course, index) => {
             const CategoryIcon = categoryIcons[course.category] || BookOpen;
+            const imageUrl = course.thumbnail_url || categoryImages[course.category] || categoryImages['robotique'];
+            
             return (
               <AnimatedSection key={course.id} delay={index * 0.1}>
-                <div className="group bg-card border border-border/50 rounded-2xl p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <CategoryIcon className="w-6 h-6 text-primary" />
+                <div 
+                  className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 cursor-pointer"
+                  onClick={() => handleViewCourse(course.id)}
+                >
+                  {/* Image */}
+                  <div className="relative overflow-hidden">
+                    <AspectRatio ratio={16/9}>
+                      <img 
+                        src={imageUrl} 
+                        alt={course.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                    </AspectRatio>
+                    
+                    {/* Category badge on image */}
+                    <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/90 backdrop-blur-sm border border-border/50">
+                      <CategoryIcon className="w-4 h-4 text-primary" />
+                      <span className="text-xs font-medium text-foreground capitalize">{course.category}</span>
                     </div>
-                    <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${difficultyColors[course.difficulty] || 'bg-muted text-muted-foreground'}`}>
-                      {course.difficulty}
-                    </span>
+                    
+                    {/* Difficulty badge */}
+                    <div className="absolute top-4 right-4">
+                      <span className={`text-xs font-semibold px-3 py-1.5 rounded-full ${difficultyColors[course.difficulty] || 'bg-muted text-muted-foreground'}`}>
+                        {course.difficulty}
+                      </span>
+                    </div>
                   </div>
 
-                  <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {course.title}
-                  </h3>
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-1">
+                      {course.title}
+                    </h3>
 
-                  <p className="text-muted-foreground mb-4 line-clamp-2">
-                    {course.description}
-                  </p>
+                    <p className="text-muted-foreground mb-5 line-clamp-2 leading-relaxed">
+                      {course.description}
+                    </p>
 
-                  <div className="flex items-center justify-between">
-                    <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <Clock className="w-4 h-4" />
-                      {course.duration_minutes} min
-                    </span>
-                    
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={() => handleViewCourse(course.id)}
-                      className="text-primary hover:text-primary hover:bg-primary/10 group/btn gap-1"
-                    >
-                      Voir le cours
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
+                    <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                      <span className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Clock className="w-4 h-4" />
+                        <span className="font-medium">{course.duration_minutes} min</span>
+                      </span>
+                      
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        className="text-primary hover:text-primary hover:bg-primary/10 group/btn gap-2 font-semibold"
+                      >
+                        Voir le cours
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </AnimatedSection>
@@ -141,16 +171,13 @@ const CoursesSection = () => {
             asChild
             variant="outline" 
             size="lg"
-            className="gap-2 border-primary/50 text-primary hover:bg-primary/10"
+            className="gap-2 border-primary/50 text-primary hover:bg-primary/10 font-semibold"
           >
             <a href="/cours">
               Voir tous les cours
               <ArrowRight className="w-4 h-4" />
             </a>
           </Button>
-          <p className="text-sm text-muted-foreground mt-3">
-            💬 Chat IA intégré pour vous accompagner dans chaque cours
-          </p>
         </AnimatedSection>
       </div>
     </section>
