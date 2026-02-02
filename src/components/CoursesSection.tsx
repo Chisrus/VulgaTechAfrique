@@ -58,7 +58,7 @@ const CoursesSection = () => {
 
   if (loading) {
     return (
-      <section id="courses" className="py-20 md:py-28">
+      <section id="courses" className="py-24 md:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="h-8 w-48 bg-muted rounded animate-pulse mx-auto mb-4" />
@@ -75,7 +75,7 @@ const CoursesSection = () => {
   }
 
   return (
-    <section id="courses" className="py-20 md:py-28">
+    <section id="courses" className="py-24 md:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">

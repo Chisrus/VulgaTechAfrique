@@ -7,7 +7,7 @@ const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 sm:pt-24 pb-16 sm:pb-20 overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center pt-24 sm:pt-28 pb-20 sm:pb-28 overflow-hidden">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
       
