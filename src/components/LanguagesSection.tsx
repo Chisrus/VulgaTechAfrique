@@ -45,7 +45,7 @@ const LanguagesSection = () => {
             <span className="text-gradient-primary">votre langue</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Plus de 30 langues africaines et internationales supportées pour que la barrière 
+            25 langues africaines et internationales supportées pour que la barrière 
             linguistique ne soit jamais un obstacle à votre apprentissage.
           </p>
         </AnimatedSection>
@@ -79,7 +79,7 @@ const LanguagesSection = () => {
 
         <AnimatedSection delay={0.5} className="mt-12 text-center">
           <p className="text-muted-foreground">
-            <span className="text-foreground font-medium">30+</span> langues disponibles • 
+            <span className="text-foreground font-medium">25</span> langues disponibles • 
             Traduction automatique IA • 
             <span className="text-foreground font-medium"> Mise à jour continue</span>
           </p>
