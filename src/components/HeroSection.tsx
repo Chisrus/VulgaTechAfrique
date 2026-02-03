@@ -86,19 +86,10 @@ const HeroSection = () => {
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Users className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-foreground">50K+</p>
-                  <p className="text-sm text-muted-foreground">Apprenants</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                   <BookOpen className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-bold text-foreground">120+</p>
+                  <p className="font-display text-2xl font-bold text-foreground">10+</p>
                   <p className="text-sm text-muted-foreground">Cours</p>
                 </div>
               </div>
@@ -107,8 +98,17 @@ const HeroSection = () => {
                   <Globe className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-bold text-foreground">30+</p>
+                  <p className="font-display text-2xl font-bold text-foreground">25</p>
                   <p className="text-sm text-muted-foreground">Langues</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Users className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-display text-2xl font-bold text-foreground">47</p>
+                  <p className="text-sm text-muted-foreground">Pays</p>
                 </div>
               </div>
             </motion.div>
