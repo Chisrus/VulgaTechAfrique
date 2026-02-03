@@ -50,9 +50,7 @@ const HowItWorksSection = () => {
         </AnimatedSection>
 
         {/* Steps */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
-          {/* Connection Line (Desktop) */}
-          <div className="hidden lg:block absolute top-16 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
           
           {steps.map((step, index) => (
             <AnimatedSection key={step.number} delay={index * 0.15}>
