@@ -26,11 +26,8 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section id="features" className="py-20 md:py-28 lg:py-32 relative">
-      {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/3 to-transparent pointer-events-none" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="features" className="py-20 md:py-28 lg:py-32">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <AnimatedSection className="text-center mb-16 max-w-3xl mx-auto">
           <span className="inline-block text-primary font-semibold text-sm uppercase tracking-widest mb-4">
