@@ -1,21 +1,16 @@
-import { Bot, Globe, Users, Zap, BookOpen, Award } from "lucide-react";
+import { Bot, Globe, Zap, BookOpen } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const features = [
   {
     icon: Bot,
-    title: "IA Conversationnelle",
-    description: "Assistant intelligent disponible 24h/24 pour répondre à toutes vos questions et vous guider.",
+    title: "Chatbot IA 24/7",
+    description: "Un assistant intelligent sur Telegram qui répond à vos questions et vous guide pas à pas.",
   },
   {
     icon: Globe,
-    title: "30+ Langues Africaines",
-    description: "Bambara, Wolof, Swahili, Yoruba, Hausa et bien d'autres. Apprenez dans votre langue maternelle.",
-  },
-  {
-    icon: Users,
-    title: "Communauté Active",
-    description: "Rejoignez 50 000+ apprenants à travers l'Afrique et collaborez sur des projets innovants.",
+    title: "Multilingue",
+    description: "Contenu disponible en français et dans les langues locales de Côte d'Ivoire.",
   },
   {
     icon: Zap,
@@ -26,11 +21,6 @@ const features = [
     icon: BookOpen,
     title: "Projets Pratiques",
     description: "Construisez de vrais robots et programmes IA avec un accompagnement étape par étape.",
-  },
-  {
-    icon: Award,
-    title: "Certifications",
-    description: "Obtenez des certificats reconnus pour valoriser vos compétences auprès des employeurs.",
   },
 ];
 
@@ -56,7 +46,7 @@ const FeaturesSection = () => {
         </AnimatedSection>
 
         {/* Features Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
           {features.map((feature, index) => (
             <AnimatedSection key={feature.title} delay={index * 0.1}>
               <div className="group h-full bg-card rounded-2xl p-6 lg:p-8 border border-border/50 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
