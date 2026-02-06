@@ -7,6 +7,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import { Clock, BookOpen, ArrowRight, Cpu, Lightbulb, Brain, Search, Filter, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { cleanText, cleanAndTruncate, cleanCategory, cleanDifficulty } from '@/utils/textCleaner';
 
 interface Course {
   id: string;
@@ -176,20 +177,24 @@ const Courses = () => {
                             </span>
                           )}
                           <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${difficultyColors[course.difficulty] || 'bg-muted text-muted-foreground'}`}>
-                            {course.difficulty}
+                            {cleanDifficulty(course.difficulty)}
                           </span>
                         </div>
                       </div>
 
                       <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        {course.title}
+                        {cleanText(course.title)}
                       </h3>
 
                       <p className="text-muted-foreground mb-4 line-clamp-3 flex-grow">
-                        {course.description}
+                        {cleanAndTruncate(course.description, 150)}
                       </p>
 
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/30">
+                        <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                          <BookOpen className="w-4 h-4" />
+                          {cleanCategory(course.category)}
+                        </span>
                         <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
                           <Clock className="w-4 h-4" />
                           {course.duration_minutes} min

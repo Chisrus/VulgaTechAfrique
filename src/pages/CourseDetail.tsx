@@ -8,6 +8,7 @@ import CourseChat from '@/components/CourseChat';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Clock, BookOpen, Loader2, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { cleanText, cleanCategory, cleanDifficulty } from '@/utils/textCleaner';
 
 interface Course {
   id: string;
@@ -155,7 +156,7 @@ const CourseDetail = () => {
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${difficultyColors[course.difficulty] || 'bg-muted text-muted-foreground'}`}>
-              {course.difficulty}
+              {cleanDifficulty(course.difficulty)}
             </span>
             <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
               <Clock className="w-4 h-4" />
@@ -163,16 +164,16 @@ const CourseDetail = () => {
             </span>
             <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
               <BookOpen className="w-4 h-4" />
-              {course.category}
+              {cleanCategory(course.category)}
             </span>
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {course.title}
+            {cleanText(course.title)}
           </h1>
 
           <p className="text-lg text-muted-foreground mb-8">
-            {course.description}
+            {cleanText(course.description)}
           </p>
 
           {/* Language selector and Telegram button */}
@@ -207,7 +208,7 @@ const CourseDetail = () => {
             ) : translatedContent ? (
               <div className="prose prose-invert max-w-none">
                 <div className="text-foreground leading-relaxed whitespace-pre-wrap">
-                  {translatedContent}
+                  {cleanText(translatedContent)}
                 </div>
               </div>
             ) : (
