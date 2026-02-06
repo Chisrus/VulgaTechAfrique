@@ -30,7 +30,7 @@ const Footer = () => {
             <a href="/articles" className="text-muted-foreground hover:text-foreground transition-colors">
               Articles
             </a>
-            <a href="#inclusion" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/inclusion" className="text-muted-foreground hover:text-foreground transition-colors">
               Inclusion
             </a>
             <a href="/a-propos" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -58,10 +58,10 @@ const Footer = () => {
             © {currentYear} VulgaTechAfrique. Doing by Coffi Chris Kouakou "Chisrus Dev".
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/confidentialite" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Confidentialité
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/conditions" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Conditions
             </a>
           </div>

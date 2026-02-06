@@ -11,6 +11,9 @@ import Courses from "./pages/Courses";
 import ArticleDetail from "./pages/ArticleDetail";
 import Articles from "./pages/Articles";
 import About from "./pages/About";
+import Inclusion from "./pages/Inclusion";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +33,9 @@ const App = () => (
             <Route path="/article/:id" element={<ArticleDetail />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/a-propos" element={<About />} />
+            <Route path="/inclusion" element={<Inclusion />} />
+            <Route path="/confidentialite" element={<Privacy />} />
+            <Route path="/conditions" element={<Terms />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

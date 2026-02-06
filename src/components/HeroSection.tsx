@@ -67,13 +67,15 @@ const HeroSection = () => {
                 </a>
               </Button>
               <Button 
+                asChild
                 variant="ghost" 
                 size="lg"
                 className="text-primary hover:text-primary hover:bg-primary/10 gap-2 h-12 px-6 text-base"
-                onClick={() => document.getElementById('inclusion')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Heart className="w-5 h-5" />
-                Nos valeurs
+                <a href="/inclusion">
+                  <Heart className="w-5 h-5" />
+                  Nos valeurs
+                </a>
               </Button>
             </div>
 

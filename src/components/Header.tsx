@@ -87,12 +87,12 @@ const Header = () => {
               >
                 Articles
               </a>
-              <button 
-                onClick={() => handleNavClick('inclusion')} 
+              <a 
+                href="/inclusion" 
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
                 Inclusion
-              </button>
+              </a>
               <a 
                 href="/a-propos" 
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
@@ -189,12 +189,12 @@ const Header = () => {
                 >
                   Articles
                 </a>
-                <button 
-                  onClick={() => { handleNavClick('inclusion'); }} 
+                <a 
+                  href="/inclusion" 
                   className="text-base text-muted-foreground hover:text-foreground transition-colors py-3 text-left font-medium"
                 >
                   Inclusion
-                </button>
+                </a>
                 <a 
                   href="/a-propos" 
                   className="text-base text-muted-foreground hover:text-foreground transition-colors py-3 text-left font-medium"
