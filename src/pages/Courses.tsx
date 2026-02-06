@@ -170,13 +170,13 @@ const Courses = () => {
                         <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                           <CategoryIcon className="w-6 h-6 text-primary" />
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex flex-col gap-1 text-right">
                           {course.is_free_preview && (
-                            <span className="text-xs font-medium px-2 py-1 rounded-full bg-green-500/10 text-green-400">
-                              Gratuit
+                            <span className="text-xs font-medium text-green-400">
+                              Accès gratuit
                             </span>
                           )}
-                          <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${difficultyColors[course.difficulty] || 'bg-muted text-muted-foreground'}`}>
+                          <span className={`text-xs font-medium ${difficultyColors[course.difficulty] || 'text-muted-foreground'}`}>
                             {cleanDifficulty(course.difficulty)}
                           </span>
                         </div>

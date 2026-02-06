@@ -20,17 +20,6 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Inclusion Badge */}
-            <motion.div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/80 text-accent-foreground text-xs font-medium mb-6 border border-accent-foreground/10"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              <Heart className="w-3.5 h-3.5 text-primary" />
-              <span>Accessible à tous • Villages • Zones rurales • Sourds et malentendants</span>
-            </motion.div>
-
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-[1.1] tracking-tight">
               La tech pour{" "}
               <span className="text-gradient-primary">tous</span>
@@ -131,40 +120,6 @@ const HeroSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
             </div>
-
-            {/* Floating Cards */}
-            <motion.div 
-              className="absolute -bottom-4 -left-4 sm:-left-8 bg-card/95 backdrop-blur-sm p-4 rounded-xl shadow-xl border border-border/50"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center">
-                  <MessageCircle className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <p className="font-medium text-foreground">Chatbot 24/7</p>
-                  <p className="text-sm text-muted-foreground">Réponses instantanées</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              className="absolute -top-4 -right-4 sm:-right-8 bg-card/95 backdrop-blur-sm px-4 py-3 rounded-xl shadow-xl border border-border/50"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
-            >
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-green-500" />
-                  <div className="w-8 h-8 rounded-full bg-primary" />
-                  <div className="w-8 h-8 rounded-full bg-yellow-500" />
-                </div>
-                <span className="text-sm font-medium text-foreground">+47 pays</span>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>

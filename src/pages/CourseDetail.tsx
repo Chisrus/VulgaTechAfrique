@@ -154,8 +154,8 @@ const CourseDetail = () => {
 
         {/* Course header */}
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${difficultyColors[course.difficulty] || 'bg-muted text-muted-foreground'}`}>
+          <div className="flex flex-wrap items-center gap-4 mb-4">
+            <span className={`text-sm font-medium ${difficultyColors[course.difficulty] || 'text-muted-foreground'}`}>
               {cleanDifficulty(course.difficulty)}
             </span>
             <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
