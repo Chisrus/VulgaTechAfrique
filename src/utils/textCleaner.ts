@@ -11,11 +11,13 @@ export const cleanText = (text: string): string => {
   if (!text || typeof text !== 'string') return text;
   
   return text
-    // Garder seulement les caractères ASCII basic, caractères latins, ponctuation standard
-    .replace(/[^\x20-\x7E\u00C0-\u017F\u00A0-\u00FF\s\n\r\t]/g, '')
-    // Nettoyer les espaces multiples
+    // Supprimer tous les caractères sauf lettres, chiffres, ponctuation de base et espaces
+    .replace(/[^\w\sàâäéèêëïîôöùûüÿçñæœ.,!?;:'"-]/gi, '')
+    // Supprimer les caractères de contrôle et invisibles
+    .replace(/[\x00-\x1F\x7F-\x9F]/g, '')
+    // Nettoyer les espaces multiples et caractères blancs
     .replace(/\s+/g, ' ')
-    // Nettoyer les espaces en début et fin
+    // Supprimer les espaces en début et fin
     .trim();
 };
 

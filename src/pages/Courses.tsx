@@ -165,15 +165,15 @@ const Courses = () => {
                 const CategoryIcon = categoryIcons[course.category] || BookOpen;
                 return (
                   <AnimatedSection key={course.id} delay={index * 0.05}>
-                    <div className="group bg-card border border-border/50 rounded-2xl p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 h-full flex flex-col">
+                    <div className="group bg-card border border-border/50 rounded-xl p-6 hover:border-primary/30 transition-all duration-300 h-full flex flex-col">
                       <div className="flex items-start justify-between mb-4">
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                          <CategoryIcon className="w-6 h-6 text-primary" />
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <CategoryIcon className="w-5 h-5 text-primary" />
                         </div>
                         <div className="flex flex-col gap-1 text-right">
                           {course.is_free_preview && (
                             <span className="text-xs font-medium text-green-400">
-                              Accès gratuit
+                              Gratuit
                             </span>
                           )}
                           <span className={`text-xs font-medium ${difficultyColors[course.difficulty] || 'text-muted-foreground'}`}>
@@ -182,34 +182,27 @@ const Courses = () => {
                         </div>
                       </div>
 
-                      <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                         {cleanText(course.title)}
                       </h3>
 
-                      <p className="text-muted-foreground mb-4 line-clamp-3 flex-grow">
-                        {cleanAndTruncate(course.description, 150)}
+                      <p className="text-muted-foreground mb-4 line-clamp-2 flex-grow text-sm">
+                        {cleanAndTruncate(course.description, 120)}
                       </p>
 
-                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/30">
-                        <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                          <BookOpen className="w-4 h-4" />
-                          {cleanCategory(course.category)}
-                        </span>
-                        <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                          <Clock className="w-4 h-4" />
-                          {course.duration_minutes} min
-                        </span>
-                        
-                        <Button 
-                          variant="ghost" 
-                          size="sm"
-                          onClick={() => handleViewCourse(course.id)}
-                          className="text-primary hover:text-primary hover:bg-primary/10 group/btn gap-1"
-                        >
-                          Voir le cours
-                          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                        </Button>
+                      <div className="flex items-center justify-between mt-auto text-xs text-muted-foreground">
+                        <span>{cleanCategory(course.category)}</span>
+                        <span>{course.duration_minutes} min</span>
                       </div>
+                      
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={() => handleViewCourse(course.id)}
+                        className="w-full mt-3 text-primary hover:text-primary hover:bg-primary/10 text-sm"
+                      >
+                        Voir le cours
+                      </Button>
                     </div>
                   </AnimatedSection>
                 );

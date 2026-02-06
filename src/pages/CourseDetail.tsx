@@ -154,18 +154,12 @@ const CourseDetail = () => {
 
         {/* Course header */}
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap items-center gap-4 mb-4">
-            <span className={`text-sm font-medium ${difficultyColors[course.difficulty] || 'text-muted-foreground'}`}>
-              {cleanDifficulty(course.difficulty)}
-            </span>
-            <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-              <Clock className="w-4 h-4" />
-              {course.duration_minutes} min
-            </span>
-            <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-              <BookOpen className="w-4 h-4" />
-              {cleanCategory(course.category)}
-            </span>
+          <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-muted-foreground">
+            <span>{cleanDifficulty(course.difficulty)}</span>
+            <span>•</span>
+            <span>{course.duration_minutes} minutes</span>
+            <span>•</span>
+            <span>{cleanCategory(course.category)}</span>
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
