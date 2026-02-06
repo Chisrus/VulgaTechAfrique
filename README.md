@@ -1,22 +1,18 @@
-# Welcome to your Lovable project
+# VulgaTechAfrique
+
+Plateforme éducative pour rendre la robotique, l'IA et les technologies accessibles à tous en Afrique.
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Description**: VulgaTechAfrique est une plateforme d'apprentissage qui offre des cours interactifs sur la robotique, l'intelligence artificielle et les nouvelles technologies via WhatsApp et Telegram.
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
 **Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+If you want to work locally using your own IDE, you can clone this repo and push changes.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -59,15 +55,20 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+- Supabase (Backend)
+- Telegram & WhatsApp APIs
+
+## Features
+
+- **Cours multilingues**: Disponible en français, anglais et plusieurs langues africaines
+- **Chatbots éducatifs**: Assistants IA sur WhatsApp et Telegram
+- **Traduction automatique**: Support des langues africaines
+- **Interface web moderne**: Plateforme intuitive pour l'apprentissage
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Deploy using your preferred hosting platform (Vercel, Netlify, etc.) or set up your own server.
 
-## Can I connect a custom domain to my Lovable project?
+## Contributing
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Contributions are welcome! Please feel free to submit a Pull Request.

@@ -4,7 +4,6 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const TELEGRAM_BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN")!;
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY")!;
 const HUGGINGFACE_API_KEY = Deno.env.get("HUGGINGFACE_API_KEY")!;
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
@@ -257,43 +256,8 @@ async function saveMessage(conversationId: string, chatId: number, messageId: nu
 }
 
 async function getAIResponse(messages: { role: string; content: string }[], userLanguage: string) {
-  // Get response from Lovable AI (which handles multiple languages well)
-  const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${LOVABLE_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: "google/gemini-3-flash-preview",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        ...messages,
-      ],
-      max_tokens: 1000,
-    }),
-  });
-
-  if (!response.ok) {
-    const error = await response.text();
-    console.error("AI API error:", error);
-    throw new Error("Failed to get AI response");
-  }
-
-  const data = await response.json();
-  let aiResponse = data.choices[0].message.content;
-
-  // If user is using an African language, translate the response
-  if (userLanguage in AFRICAN_LANGUAGES) {
-    console.log(`Translating response to ${AFRICAN_LANGUAGES[userLanguage]}`);
-    aiResponse = await translateWithHuggingFace(
-      aiResponse,
-      getNLLBCode("fr"),
-      getNLLBCode(userLanguage)
-    );
-  }
-
-  return aiResponse;
+  // AI service currently unavailable - lovable API removed
+  return "Désolé, le service AI est temporairement indisponible. Veuillez réessayer plus tard.";
 }
 
 serve(async (req) => {

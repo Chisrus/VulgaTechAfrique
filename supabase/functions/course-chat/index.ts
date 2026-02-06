@@ -37,27 +37,8 @@ Instructions:
       { role: 'user', content: message }
     ];
 
-    const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
-    
-    const response = await fetch('https://api.lovable.dev/ai/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${lovableApiKey}`,
-      },
-      body: JSON.stringify({
-        model: 'google/gemini-2.5-flash',
-        messages,
-        max_tokens: 1000,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`AI API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    const aiResponse = data.choices?.[0]?.message?.content || "Je n'ai pas pu générer une réponse.";
+    // AI service currently unavailable - lovable API removed
+    const aiResponse = "Désolé, le service AI est temporairement indisponible. Veuillez réessayer plus tard.";
 
     return new Response(
       JSON.stringify({ response: aiResponse }),

@@ -45,8 +45,10 @@ serve(async (req) => {
     const huggingfaceApiKey = Deno.env.get('HUGGINGFACE_API_KEY');
     
     if (!huggingfaceApiKey) {
-      // Fallback to AI translation if no HuggingFace key
-      return await fallbackAITranslation(text, targetLanguage, sourceLang);
+      return new Response(
+        JSON.stringify({ error: 'Translation service unavailable - missing API key' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     const srcLang = nllbLanguageCodes[sourceLang] || 'fra_Latn';
@@ -73,7 +75,10 @@ serve(async (req) => {
 
     if (!response.ok) {
       console.error('HuggingFace error:', await response.text());
-      return await fallbackAITranslation(text, targetLanguage, sourceLang);
+      return new Response(
+        JSON.stringify({ error: 'Translation service unavailable' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     const result = await response.json();
@@ -92,50 +97,3 @@ serve(async (req) => {
     );
   }
 });
-
-async function fallbackAITranslation(text: string, targetLanguage: string, sourceLang: string) {
-  const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
-  
-  const languageNames: Record<string, string> = {
-    'fr': 'French',
-    'en': 'English',
-    'bm': 'Bambara',
-    'sw': 'Swahili',
-    'wo': 'Wolof',
-    'ha': 'Hausa',
-    'yo': 'Yoruba',
-    'ig': 'Igbo',
-    'am': 'Amharic',
-    'zu': 'Zulu',
-  };
-
-  const response = await fetch('https://api.lovable.dev/ai/chat', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${lovableApiKey}`,
-    },
-    body: JSON.stringify({
-      model: 'google/gemini-2.5-flash',
-      messages: [
-        {
-          role: 'system',
-          content: `You are a translator. Translate the following text from ${languageNames[sourceLang] || 'French'} to ${languageNames[targetLanguage] || 'English'}. Only output the translation, nothing else.`
-        },
-        {
-          role: 'user',
-          content: text
-        }
-      ],
-      max_tokens: 2000,
-    }),
-  });
-
-  const data = await response.json();
-  const translatedText = data.choices?.[0]?.message?.content || text;
-
-  return new Response(
-    JSON.stringify({ translatedText }),
-    { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-  );
-}
