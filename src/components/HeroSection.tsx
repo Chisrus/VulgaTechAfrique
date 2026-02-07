@@ -65,19 +65,19 @@ const HeroSection = () => {
             <div className="grid grid-cols-3 gap-8 pt-16">
               <div className="text-center">
                 <div className="text-4xl font-bold text-indigo-600 mb-2">
-                  <Counter from={0} to={50} suffix="+" />
+                  <Counter from={0} to={12} suffix="+" />
                 </div>
                 <div className="text-sm text-gray-600">Langues africaines</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-purple-600 mb-2">
-                  <Counter from={0} to={54} />
+                  <Counter from={0} to={8} />
                 </div>
                 <div className="text-sm text-gray-600">Pays couverts</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-indigo-600 mb-2">
-                  <Counter from={0} to={1000000} suffix="M+" />
+                  <Counter from={0} to={500} suffix="+" />
                 </div>
                 <div className="text-sm text-gray-600">Apprenants</div>
               </div>

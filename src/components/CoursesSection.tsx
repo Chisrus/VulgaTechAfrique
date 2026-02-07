@@ -33,7 +33,7 @@ const CoursesSection = () => {
             difficulty: "Débutant",
             duration_minutes: 120,
             is_free_preview: true,
-            enrollment_count: 2847,
+            enrollment_count: 127,
             rating: 4.9
           },
           {
@@ -44,7 +44,7 @@ const CoursesSection = () => {
             difficulty: "Intermédiaire",
             duration_minutes: 180,
             is_free_preview: false,
-            enrollment_count: 1532,
+            enrollment_count: 89,
             rating: 4.8
           },
           {
@@ -55,7 +55,7 @@ const CoursesSection = () => {
             difficulty: "Débutant", 
             duration_minutes: 150,
             is_free_preview: true,
-            enrollment_count: 3421,
+            enrollment_count: 156,
             rating: 4.7
           },
           {
@@ -66,7 +66,7 @@ const CoursesSection = () => {
             difficulty: "Intermédiaire",
             duration_minutes: 200,
             is_free_preview: false,
-            enrollment_count: 987,
+            enrollment_count: 67,
             rating: 4.9
           },
           {
@@ -77,7 +77,7 @@ const CoursesSection = () => {
             difficulty: "Avancé",
             duration_minutes: 160,
             is_free_preview: false,
-            enrollment_count: 654,
+            enrollment_count: 34,
             rating: 4.6
           },
           {
@@ -88,7 +88,7 @@ const CoursesSection = () => {
             difficulty: "Intermédiaire",
             duration_minutes: 140,
             is_free_preview: true,
-            enrollment_count: 1893,
+            enrollment_count: 98,
             rating: 4.8
           }
         ];
