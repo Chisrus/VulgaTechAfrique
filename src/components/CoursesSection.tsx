@@ -1,153 +1,280 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
-import AnimatedSection from './AnimatedSection';
-import { Clock, BookOpen, ArrowRight, Cpu, Lightbulb, Brain } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { ArrowRight, BookOpen, Clock, Users, Star, Zap, Brain, Rocket, Target, Sparkles } from "lucide-react";
+import { cleanText, cleanAndTruncate } from "@/utils/textCleaner";
 
 interface Course {
   id: string;
   title: string;
   description: string;
+  category: string;
   difficulty: string;
   duration_minutes: number;
-  category: string;
-  content_preview: string | null;
-  thumbnail_url: string | null;
+  is_free_preview: boolean;
+  enrollment_count?: number;
+  rating?: number;
 }
-
-const difficultyColors: Record<string, string> = {
-  'débutant': 'bg-green-500/10 text-green-400',
-  'intermédiaire': 'bg-yellow-500/10 text-yellow-400',
-  'avancé': 'bg-red-500/10 text-red-400'
-};
-
-const categoryIcons: Record<string, React.ElementType> = {
-  'robotique': Cpu,
-  'programmation': BookOpen,
-  'électronique': Lightbulb,
-  'ia': Brain
-};
-
 
 const CoursesSection = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
-      const { data, error } = await supabase
-        .from('courses')
-        .select('*')
-        .eq('is_free_preview', true)
-        .limit(4);
-
-      if (!error && data) {
-        setCourses(data);
+      try {
+        // Simuler des données pour l'instant
+        const mockCourses: Course[] = [
+          {
+            id: "1",
+            title: "Robotique IA pour l'Afrique",
+            description: "Maîtrisez la robotique et l'intelligence artificielle avec des projets concrets adaptés au contexte africain.",
+            category: "Robotique",
+            difficulty: "Débutant",
+            duration_minutes: 120,
+            is_free_preview: true,
+            enrollment_count: 2847,
+            rating: 4.9
+          },
+          {
+            id: "2", 
+            title: "IA Générative et Créativité",
+            description: "Apprenez à utiliser l'IA pour créer des solutions innovantes pour les défis africains.",
+            category: "IA",
+            difficulty: "Intermédiaire",
+            duration_minutes: 180,
+            is_free_preview: false,
+            enrollment_count: 1532,
+            rating: 4.8
+          },
+          {
+            id: "3",
+            title: "Code Python pour l'Innovation",
+            description: "Devenez expert en Python et créez des applications qui transforment votre communauté.",
+            category: "Programmation",
+            difficulty: "Débutant", 
+            duration_minutes: 150,
+            is_free_preview: true,
+            enrollment_count: 3421,
+            rating: 4.7
+          },
+          {
+            id: "4",
+            title: "Data Science pour le Développement",
+            description: "Analysez les données et prenez des décisions éclairées pour l'impact social.",
+            category: "Data Science",
+            difficulty: "Intermédiaire",
+            duration_minutes: 200,
+            is_free_preview: false,
+            enrollment_count: 987,
+            rating: 4.9
+          },
+          {
+            id: "5",
+            title: "Blockchain et FinTech Africaine",
+            description: "Explorez la blockchain et créez des solutions financières inclusives pour l'Afrique.",
+            category: "Blockchain",
+            difficulty: "Avancé",
+            duration_minutes: 160,
+            is_free_preview: false,
+            enrollment_count: 654,
+            rating: 4.6
+          },
+          {
+            id: "6",
+            title: "Mobile Dev pour le Marché Africain",
+            description: "Créez des applications mobiles performantes adaptées aux réalités africaines.",
+            category: "Mobile",
+            difficulty: "Intermédiaire",
+            duration_minutes: 140,
+            is_free_preview: true,
+            enrollment_count: 1893,
+            rating: 4.8
+          }
+        ];
+        
+        setCourses(mockCourses);
+      } catch (error) {
+        console.error("Erreur lors du chargement des cours:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     fetchCourses();
   }, []);
 
-  const handleViewCourse = (courseId: string) => {
-    navigate(`/cours/${courseId}`);
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty.toLowerCase()) {
+      case "débutant": return "text-green-600 bg-green-50 border-green-200";
+      case "intermédiaire": return "text-yellow-600 bg-yellow-50 border-yellow-200";
+      case "avancé": return "text-red-600 bg-red-50 border-red-200";
+      default: return "text-gray-600 bg-gray-50 border-gray-200";
+    }
   };
 
-  if (loading) {
-    return (
-      <section id="courses" className="py-24 md:py-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="h-8 w-48 bg-muted rounded animate-pulse mx-auto mb-4" />
-            <div className="h-4 w-96 bg-muted rounded animate-pulse mx-auto" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-card rounded-2xl h-80 animate-pulse" />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const getCategoryIcon = (category: string) => {
+    switch (category.toLowerCase()) {
+      case "robotique": return <Rocket className="w-6 h-6" />;
+      case "ia": return <Brain className="w-6 h-6" />;
+      case "programmation": return <Target className="w-6 h-6" />;
+      case "data science": return <Star className="w-6 h-6" />;
+      case "blockchain": return <Zap className="w-6 h-6" />;
+      case "mobile": return <BookOpen className="w-6 h-6" />;
+      default: return <BookOpen className="w-6 h-6" />;
+    }
+  };
 
   return (
-    <section id="courses" className="py-24 md:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-5 tracking-tight">
-            Formations gratuites
+    <section className="section-gradient section">
+      <div className="container-modern">
+        {/* Header */}
+        <motion.div 
+          className="text-center max-w-4xl mx-auto mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold shadow-lg mb-8">
+            <Sparkles className="w-5 h-5" />
+            <span>Formations Premium 2025</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Transformez votre <span className="text-gradient">avenir</span> avec la tech
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Découvrez nos premiers cours pour commencer votre voyage dans la tech.
+          
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Des formations pratiques et interactives conçues par des experts pour vous rendre 
+            compétitif dans le numérique africain et mondial.
           </p>
-        </AnimatedSection>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {courses.map((course, index) => {
-            const CategoryIcon = categoryIcons[course.category] || BookOpen;
-            
-            return (
-              <AnimatedSection key={course.id} delay={index * 0.1}>
-                <div 
-                  className="group bg-card border border-border rounded-2xl p-6 hover:border-primary/30 transition-all duration-300 cursor-pointer h-full flex flex-col"
-                  onClick={() => handleViewCourse(course.id)}
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <CategoryIcon className="w-6 h-6 text-primary" />
+        {/* Courses Grid */}
+        {loading ? (
+          <div className="grid-modern">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="card animate-pulse">
+                <div className="w-full h-48 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl mb-6" />
+                <div className="h-6 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-lg mb-3" />
+                <div className="h-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg mb-6" />
+                <div className="flex justify-between">
+                  <div className="h-3 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg w-20" />
+                  <div className="h-3 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg w-16" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid-modern">
+            {courses.map((course, index) => (
+              <motion.div
+                key={course.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="card card-hover group h-full flex flex-col">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                      {getCategoryIcon(course.category)}
                     </div>
-                    <span className={`text-xs font-medium ${difficultyColors[course.difficulty] || 'text-muted-foreground'}`}>
-                      {course.difficulty}
-                    </span>
+                    
+                    <div className="flex flex-col items-end gap-2">
+                      {course.is_free_preview && (
+                        <span className="text-xs font-semibold text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-200">
+                          Gratuit
+                        </span>
+                      )}
+                      <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${getDifficultyColor(course.difficulty)}`}>
+                        {cleanText(course.difficulty)}
+                      </span>
+                    </div>
                   </div>
 
-                  <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {course.title}
-                  </h3>
-
-                  <p className="text-muted-foreground mb-4 line-clamp-2 flex-grow">
-                    {course.description}
-                  </p>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-border/30">
-                    <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                      <Clock className="w-4 h-4" />
-                      {course.duration_minutes} min
-                    </span>
+                  {/* Content */}
+                  <div className="flex-grow">
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-gradient transition-colors">
+                      {cleanText(course.title)}
+                    </h3>
                     
+                    <p className="text-muted-foreground mb-6 line-clamp-2 leading-relaxed">
+                      {cleanAndTruncate(course.description, 120)}
+                    </p>
+
+                    {/* Stats */}
+                    <div className="flex items-center gap-6 text-sm text-muted-foreground mb-6">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-indigo-500" />
+                        <span>{course.duration_minutes} min</span>
+                      </div>
+                      
+                      {course.enrollment_count && (
+                        <div className="flex items-center gap-2">
+                          <Users className="w-4 h-4 text-purple-500" />
+                          <span>{course.enrollment_count.toLocaleString()}</span>
+                        </div>
+                      )}
+                      
+                      {course.rating && (
+                        <div className="flex items-center gap-2">
+                          <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                          <span className="font-semibold">{course.rating}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="pt-6 border-t border-indigo-100">
                     <Button 
+                      asChild
                       variant="ghost" 
-                      size="sm"
-                      className="text-primary hover:text-primary hover:bg-primary/10 group/btn gap-1"
+                      className="w-full justify-between group-hover:bg-gradient-to-r group-hover:from-indigo-50 group-hover:to-purple-50 group-hover:text-indigo-700 font-semibold"
                     >
-                      Voir le cours
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      <Link to={`/cours/${course.id}`}>
+                        <span>Commencer la formation</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
                     </Button>
                   </div>
                 </div>
-              </AnimatedSection>
-            );
-          })}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
-        {/* View All Button */}
-        <AnimatedSection delay={0.4} className="text-center">
-          <Button 
-            asChild
-            variant="outline" 
-            size="lg"
-            className="gap-2 border-primary/50 text-primary hover:bg-primary/10 font-semibold"
-          >
-            <a href="/cours">
-              Voir tous les cours
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </Button>
-        </AnimatedSection>
+        {/* CTA */}
+        <motion.div 
+          className="text-center mt-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 shadow-2xl shadow-purple-500/25">
+            <h3 className="text-3xl font-bold text-white mb-4">
+              Prêt à transformer votre carrière ?
+            </h3>
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              Rejoignez des milliers d'apprenants africains qui construisent déjà leur avenir avec la technologie.
+            </p>
+            <Button 
+              asChild
+              size="lg"
+              className="bg-white text-indigo-600 hover:bg-gray-50 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <Link to="/cours" className="flex items-center gap-3">
+                <span>Voir toutes les formations</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

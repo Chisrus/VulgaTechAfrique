@@ -1,126 +1,112 @@
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Play, Send, ExternalLink, Sparkles, Users, BookOpen, Globe, Heart, Ear, Home, HandHeart, MapPin } from "lucide-react";
+import { ArrowRight, Play, MessageCircle, Globe, Users, Zap, Sparkles, Target, Lightbulb } from "lucide-react";
 import { motion } from "framer-motion";
-import heroImage from "@/assets/hero-africa-tech.jpg";
-
-const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
+import { AnimatedSection, Counter } from "./Animations";
+import HeroImage from "./HeroImage";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-24 sm:pt-28 pb-20 sm:pb-28 overflow-hidden">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-indigo-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-300/10 to-purple-300/10 rounded-full blur-3xl animate-pulse delay-500" />
+      </div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
+      
+      <div className="container-modern relative z-10">
+        <div className="grid-featured items-center gap-12 lg:gap-20">
           {/* Text Content */}
-          <motion.div 
-            className="max-w-xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-[1.1] tracking-tight">
-              La tech pour{" "}
-              <span className="text-gradient-primary">tous</span>
-              {", "}
-              <span className="text-gradient-primary">partout</span>
-            </h1>
+          <AnimatedSection animation="slideUp" delay={0}>
+            <div className="max-w-2xl space-y-8">
+              {/* Badge */}
+              <motion.div
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold shadow-lg"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <Sparkles className="w-5 h-5" />
+                <span>Révolution EdTech Africaine • 2025</span>
+              </motion.div>
 
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Nous démocratisons la <strong className="text-foreground">robotique</strong> et l'<strong className="text-foreground">IA</strong> pour chaque africain : 
-              villageois, ruraux, personnes sourdes ou malentendantes. Cours en <strong className="text-foreground">30+ langues africaines</strong> 
-              {" "}via Telegram, adaptés à votre rythme et votre contexte.
-            </p>
+              {/* Title */}
+              <h1 className="hero-title text-balance">
+                Transformons l'<span className="text-gradient">Afrique</span> par la{" "}
+                <span className="text-gradient">technologie</span>
+              </h1>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button 
-                asChild
-                size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2 h-12 px-6 text-base font-medium shadow-lg shadow-primary/25"
-              >
-                <a href="/cours">
-                  <BookOpen className="w-5 h-5" />
-                  Commencer un cours
-                </a>
-              </Button>
-              <Button 
-                asChild
-                variant="outline" 
-                size="lg"
-                className="border-border/60 hover:bg-secondary gap-2 h-12 px-6 text-base"
-              >
-                <a href="/articles">
-                  <ExternalLink className="w-5 h-5" />
-                  Lire un article
-                </a>
-              </Button>
-              <Button 
-                asChild
-                variant="ghost" 
-                size="lg"
-                className="text-primary hover:text-primary hover:bg-primary/10 gap-2 h-12 px-6 text-base"
-              >
-                <a href="/inclusion">
-                  <Heart className="w-5 h-5" />
-                  Nos valeurs
-                </a>
-              </Button>
+              {/* Subtitle */}
+              <p className="hero-subtitle text-balance">
+                Donnons à chaque africain les clés du numérique. De la robotique à l'IA, 
+                des villages aux métropoles, formons la prochaine génération de 
+                <strong className="text-foreground"> innovateurs africains</strong>.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <AnimatedSection animation="scaleIn" delay={0.3}>
+                  <Button 
+                    asChild
+                    size="lg" 
+                    className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-base px-8 py-4"
+                  >
+                    <a href="/cours">
+                      <Target className="w-5 h-5 mr-2" />
+                      Lancer ma formation
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </AnimatedSection>
+                
+                <AnimatedSection animation="scaleIn" delay={0.4}>
+                  <Button 
+                    asChild
+                    variant="outline" 
+                    size="lg"
+                    className="border-2 border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50 text-indigo-600 hover:text-indigo-700 text-base px-8 py-4"
+                  >
+                    <a href="https://t.me/VulgaTechbot" target="_blank" rel="noopener noreferrer">
+                      <MessageCircle className="w-5 h-5 mr-2" />
+                      Essayer le Bot IA
+                    </a>
+                  </Button>
+                </AnimatedSection>
+              </div>
+
+              {/* Stats */}
+              <AnimatedSection animation="slideUp" delay={0.5}>
+                <div className="grid grid-cols-3 gap-8 pt-8">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-1">
+                      <Counter from={0} to={50} suffix="+" />
+                    </div>
+                    <div className="text-sm text-muted-foreground">Langues africaines</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-1">
+                      <Counter from={0} to={54} />
+                    </div>
+                    <div className="text-sm text-muted-foreground">Pays couverts</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-1">
+                      <Counter from={0} to={1000000} suffix="M+" />
+                    </div>
+                    <div className="text-sm text-muted-foreground">Apprenants</div>
+                  </div>
+                </div>
+              </AnimatedSection>
             </div>
-
-            {/* Stats Row */}
-            <motion.div 
-              className="flex gap-8 sm:gap-12 mt-12 pt-8 border-t border-border/30"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <BookOpen className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-foreground">3</p>
-                  <p className="text-sm text-muted-foreground">Cours</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Globe className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-foreground">2</p>
-                  <p className="text-sm text-muted-foreground">Langues</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-foreground">1</p>
-                  <p className="text-sm text-muted-foreground">Pays</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+          </AnimatedSection>
 
           {/* Hero Image */}
-          <motion.div 
-            className="relative order-first lg:order-last"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
-              <img
-                src={heroImage}
-                alt="Étudiants africains apprenant la robotique et l'IA dans un lab moderne"
-                className="w-full h-auto object-cover aspect-video"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-            </div>
-          </motion.div>
+          <AnimatedSection animation="scaleIn" delay={0.3}>
+            <HeroImage />
+          </AnimatedSection>
         </div>
       </div>
     </section>

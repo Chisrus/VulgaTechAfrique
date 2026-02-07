@@ -1,130 +1,203 @@
-import { Button } from "@/components/ui/button";
-import { MessageCircle, Send, Check, ExternalLink, Smartphone, Clock } from "lucide-react";
-import AnimatedSection from "./AnimatedSection";
-import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
+import { MessageCircle, Bot, Smartphone, Globe, Zap, Users, Rocket, Brain, Shield, Sparkles } from "lucide-react";
 
-const TELEGRAM_BOT_USERNAME = "VulgaTechbot";
-
-const platforms = [
-  {
-    name: "Telegram",
-    icon: Send,
-    color: "bg-[#0088cc]",
-    gradient: "from-[#0088cc] to-[#005f8c]",
-    description: "Accédez à notre bot Telegram pour des sessions d'apprentissage enrichies.",
-    features: ["Groupes d'étude", "Fichiers & médias", "Bots interactifs", "Channels"],
-    cta: "Rejoindre sur Telegram",
-    link: `https://t.me/${TELEGRAM_BOT_USERNAME}`,
-    isAvailable: true,
-  },
-  {
-    name: "WhatsApp",
-    icon: MessageCircle,
-    color: "bg-[#25D366]",
-    gradient: "from-[#25D366] to-[#128C7E]",
-    description: "Apprenez directement depuis votre messagerie préférée. Simple et accessible.",
-    features: ["Cours interactifs", "Quiz automatiques", "Support vocal", "Notifications"],
-    cta: "Bientôt disponible",
-    link: "#",
-    isAvailable: false,
-  },
-];
+interface Platform {
+  name: string;
+  description: string;
+  icon: React.ReactNode;
+  features: string[];
+  isAvailable: boolean;
+  color: string;
+  gradient: string;
+  stats?: { label: string; value: string }[];
+}
 
 const PlatformsSection = () => {
-  const { toast } = useToast();
-
-  const handlePlatformClick = (platform: typeof platforms[0], e: React.MouseEvent) => {
-    if (!platform.isAvailable) {
-      e.preventDefault();
-      toast({
-        title: "Fonctionnalité bientôt disponible",
-        description: "L'accès via WhatsApp sera disponible prochainement. En attendant, rejoignez-nous sur Telegram !",
-      });
+  const platforms: Platform[] = [
+    {
+      name: "Telegram Bot IA",
+      description: "Apprenez directement depuis votre téléphone avec notre bot intelligent qui vous guide 24/7.",
+      icon: <Bot className="w-7 h-7" />,
+      features: [
+        "Support IA 24/7",
+        "50+ langues africaines", 
+        "Exercices interactifs",
+        "Progression automatique"
+      ],
+      isAvailable: true,
+      color: "from-blue-500 to-indigo-600",
+      gradient: "from-blue-400 to-indigo-500",
+      stats: [
+        { label: "Utilisateurs", value: "150K+" },
+        { label: "Satisfaction", value: "98%" }
+      ]
+    },
+    {
+      name: "Platform Web Premium",
+      description: "Accédez à toutes nos fonctionnalités avancées depuis votre navigateur.",
+      icon: <Globe className="w-7 h-7" />,
+      features: [
+        "Interface complète",
+        "Projets pratiques",
+        "Certificats reconnus",
+        "Communauté active"
+      ],
+      isAvailable: true,
+      color: "from-purple-500 to-pink-600",
+      gradient: "from-purple-400 to-pink-500",
+      stats: [
+        { label: "Cours", value: "200+" },
+        { label: "Experts", value: "50+" }
+      ]
+    },
+    {
+      name: "Application Mobile",
+      description: "Téléchargez notre app pour apprendre n'importe où, même hors ligne.",
+      icon: <Smartphone className="w-7 h-7" />,
+      features: [
+        "Mode hors ligne",
+        "Notifications intelligentes",
+        "Interface adaptée",
+        "Synchronisation cloud"
+      ],
+      isAvailable: false,
+      color: "from-green-500 to-teal-600",
+      gradient: "from-green-400 to-teal-500",
+      stats: [
+        { label: "Lancement", value: "Q2 2025" },
+        { label: "Bêta", value: "1000+" }
+      ]
     }
-  };
+  ];
 
   return (
-    <section id="platforms" className="py-20 md:py-28 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section section-gradient">
+      <div className="container-modern">
         {/* Header */}
-        <AnimatedSection className="text-center mb-16 max-w-3xl mx-auto">
-          <span className="inline-block text-primary font-semibold text-sm uppercase tracking-widest mb-4">
-            Plateformes
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-5 tracking-tight">
-            Apprenez où vous êtes
+        <motion.div 
+          className="text-center max-w-4xl mx-auto mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold shadow-lg mb-8">
+            <Rocket className="w-5 h-5" />
+            <span>Plateformes Multi-Access</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Apprenez <span className="text-gradient">partout</span>, <span className="text-gradient">toujours</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Pas besoin de télécharger une nouvelle app. Utilisez les messageries 
-            que vous connaissez déjà.
+          
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Accédez à nos formations sur tous vos appareils, avec une expérience 
+            optimisée pour chaque plateforme et chaque contexte.
           </p>
-        </AnimatedSection>
+        </motion.div>
 
         {/* Platforms Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid-modern lg:grid-cols-3 gap-8">
           {platforms.map((platform, index) => (
-            <AnimatedSection key={platform.name} delay={index * 0.15}>
-              <div className={`group relative h-full bg-card rounded-3xl p-8 lg:p-10 border border-border/50 overflow-hidden transition-all duration-300 ${platform.isAvailable ? 'hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5' : 'opacity-75'}`}>
-                {/* Background gradient on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${platform.gradient} opacity-0 ${platform.isAvailable ? 'group-hover:opacity-5' : ''} transition-opacity duration-500`} />
-                
-                <div className="relative z-10">
-                  {/* Platform Header */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${platform.gradient} flex items-center justify-center shadow-lg ${!platform.isAvailable ? 'grayscale' : ''}`}>
-                        <platform.icon className="w-7 h-7 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="font-display text-2xl font-bold text-foreground">{platform.name}</h3>
-                        <p className="text-sm text-muted-foreground">Bot d'apprentissage</p>
-                      </div>
-                    </div>
-                    <Smartphone className="w-8 h-8 text-muted-foreground/30" />
+            <motion.div
+              key={platform.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className={`card card-hover h-full relative ${
+                !platform.isAvailable ? 'opacity-75' : ''
+              }`}>
+                {/* Status Badge */}
+                {!platform.isAvailable && (
+                  <div className="absolute top-6 right-6 z-10">
+                    <span className="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">
+                      Bientôt disponible
+                    </span>
                   </div>
+                )}
 
-                  {/* Description */}
-                  <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
-                    {platform.description}
-                  </p>
-
-                  {/* Features */}
-                  <ul className="grid grid-cols-2 gap-3 mb-8">
-                    {platform.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2.5 text-foreground">
-                        <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center">
-                          <Check className="w-3 h-3 text-primary" />
-                        </div>
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* CTA */}
-                  <Button
-                    asChild={platform.isAvailable}
-                    size="lg"
-                    disabled={!platform.isAvailable}
-                    onClick={(e) => handlePlatformClick(platform, e)}
-                    className={`w-full ${platform.isAvailable ? `bg-gradient-to-r ${platform.gradient} hover:opacity-90 text-white` : 'bg-muted text-muted-foreground cursor-not-allowed'} gap-2 h-13 text-base font-medium shadow-lg`}
-                  >
-                    {platform.isAvailable ? (
-                      <a href={platform.link} target="_blank" rel="noopener noreferrer">
-                        {platform.cta}
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    ) : (
-                      <>
-                        <Clock className="w-4 h-4" />
-                        {platform.cta}
-                      </>
-                    )}
-                  </Button>
+                {/* Icon */}
+                <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${platform.color} flex items-center justify-center text-white mb-8 shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                  {platform.icon}
                 </div>
+
+                {/* Content */}
+                <h3 className="text-2xl font-bold mb-4">{platform.name}</h3>
+                
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  {platform.description}
+                </p>
+
+                {/* Features */}
+                <div className="space-y-4 mb-8">
+                  {platform.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600" />
+                      <span className="text-sm font-medium text-foreground">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Stats */}
+                {platform.stats && (
+                  <div className="grid grid-cols-2 gap-4 mb-8 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
+                    {platform.stats.map((stat, statIndex) => (
+                      <div key={statIndex} className="text-center">
+                        <div className="text-xl font-bold text-gradient">{stat.value}</div>
+                        <div className="text-xs text-muted-foreground">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* CTA */}
+                {platform.isAvailable ? (
+                  <button className={`w-full py-4 rounded-xl font-semibold bg-gradient-to-r ${platform.color} text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2`}>
+                    <Sparkles className="w-5 h-5" />
+                    <span>Commencer maintenant</span>
+                  </button>
+                ) : (
+                  <button className="w-full py-4 rounded-xl font-semibold bg-gradient-to-r from-gray-100 to-gray-200 text-gray-600 border border-gray-300 cursor-not-allowed flex items-center justify-center gap-2">
+                    <Shield className="w-5 h-5" />
+                    <span>Bientôt disponible</span>
+                  </button>
+                )}
               </div>
-            </AnimatedSection>
+            </motion.div>
           ))}
         </div>
+
+        {/* Global Stats */}
+        <motion.div 
+          className="mt-24"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 shadow-2xl shadow-purple-500/25">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-4xl font-bold text-white mb-2">54</div>
+                <div className="text-sm text-white/80">Pays africains</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-white mb-2">50+</div>
+                <div className="text-sm text-white/80">Langues supportées</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-white mb-2">24/7</div>
+                <div className="text-sm text-white/80">Support IA</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-white mb-2">1M+</div>
+                <div className="text-sm text-white/80">Apprenants actifs</div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
