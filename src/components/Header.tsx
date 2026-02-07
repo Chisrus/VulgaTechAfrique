@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, MessageCircle, User, LogOut } from "lucide-react";
+import { Menu, X, MessageCircle, User, LogOut, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -106,6 +106,23 @@ const Header = () => {
               className="text-gray-600 hover:text-gray-900"
             >
               <a 
+                href="https://www.linkedin.com/company/vulgatechafrique"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <Linkedin className="w-4 h-4" />
+                <span>LinkedIn</span>
+              </a>
+            </Button>
+            
+            <Button 
+              asChild
+              variant="ghost" 
+              size="sm"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <a 
                 href="https://t.me/VulgaTechbot" 
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -174,6 +191,23 @@ const Header = () => {
               ))}
               
               <div className="pt-4 border-t border-gray-200 space-y-3">
+                <Button 
+                  asChild
+                  variant="ghost" 
+                  size="sm"
+                  className="text-gray-600 hover:text-gray-900 w-full justify-start"
+                >
+                  <a 
+                    href="https://www.linkedin.com/company/vulgatechafrique"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    <span>LinkedIn</span>
+                  </a>
+                </Button>
+                
                 <Button 
                   asChild
                   variant="ghost" 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
+import { MessageCircle, Mail, MapPin, Phone, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -53,6 +53,19 @@ const Footer = () => {
                 Démocratisons la technologie pour chaque africain. 
                 Accessible, inclusive, adaptée à votre réalité et vos ambitions.
               </p>
+
+              {/* Social Links */}
+              <div className="flex items-center space-x-4 mb-8">
+                <a
+                  href="https://www.linkedin.com/company/vulgatechafrique"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white flex items-center justify-center transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              </div>
 
               {/* CTA */}
               <div className="bg-gray-800 rounded-lg p-6">
@@ -113,8 +126,8 @@ const Footer = () => {
               <Phone className="w-5 h-5 text-gray-400" />
               <div>
                 <div className="text-sm font-medium text-white mb-1">Téléphone</div>
-                <a href="tel:+22500000000" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  +225 00 00 00 00
+                <a href="tel:+2250151239570" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  +225 01 51 23 95 70
                 </a>
               </div>
             </div>
