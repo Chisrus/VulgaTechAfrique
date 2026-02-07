@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { MessageCircle, Mail, MapPin, Phone, Github, Twitter, Linkedin, Heart, Sparkles, Rocket, Globe, Shield } from "lucide-react";
+import { MessageCircle, Mail, MapPin, Phone } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -32,144 +31,99 @@ const Footer = () => {
     ]
   };
 
-  const socialLinks = [
-    { name: "Twitter", href: "https://twitter.com/vulgatech", icon: <Twitter className="w-5 h-5" /> },
-    { name: "LinkedIn", href: "https://linkedin.com/company/vulgatech", icon: <Linkedin className="w-5 h-5" /> },
-    { name: "Github", href: "https://github.com/vulgatech", icon: <Github className="w-5 h-5" /> }
-  ];
-
   return (
-    <footer className="bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 text-white">
+    <footer className="bg-gray-900 text-white">
       <div className="container-modern">
         {/* Main Footer */}
-        <div className="py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">
+        <div className="py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Brand */}
-            <motion.div 
-              className="lg:col-span-2"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+            <div className="lg:col-span-1">
               <Link 
                 to="/" 
-                className="flex items-center space-x-3 text-3xl font-bold mb-8 group"
+                className="flex items-center space-x-2 text-2xl font-bold mb-6"
               >
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-purple-400 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                  <Sparkles className="w-6 h-6 text-white" />
+                <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">V</span>
                 </div>
-                <div>
-                  <span className="text-white">VulgaTech</span>
-                  <div className="text-sm text-indigo-200 font-normal">
-                    Révolution EdTech
-                  </div>
-                </div>
+                <span className="text-white">VulgaTech</span>
               </Link>
               
-              <p className="text-indigo-200 mb-8 max-w-sm leading-relaxed">
+              <p className="text-gray-400 mb-8 leading-relaxed">
                 Démocratisons la technologie pour chaque africain. 
                 Accessible, inclusive, adaptée à votre réalité et vos ambitions.
               </p>
 
-              {/* Social Links */}
-              <div className="flex items-center space-x-4 mb-8">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 text-white hover:text-indigo-200 flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20"
-                    aria-label={social.name}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-
               {/* CTA */}
-              <div className="bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl p-6 border border-white/20 backdrop-blur-sm">
+              <div className="bg-gray-800 rounded-lg p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <MessageCircle className="w-6 h-6 text-indigo-300" />
-                  <h4 className="font-bold text-lg">Rejoignez notre Bot IA</h4>
+                  <MessageCircle className="w-5 h-5 text-indigo-400" />
+                  <h4 className="font-semibold">Rejoignez notre Bot IA</h4>
                 </div>
-                <p className="text-indigo-200 mb-6 text-sm leading-relaxed">
+                <p className="text-gray-400 mb-6 text-sm leading-relaxed">
                   Accès instantané à nos cours, support 24/7 et apprentissage personnalisé
                 </p>
                 <a 
                   href="https://t.me/VulgaTechbot"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <MessageCircle className="w-4 h-4" />
                   <span>Ouvrir Telegram</span>
-                  <Rocket className="w-4 h-4" />
                 </a>
               </div>
-            </motion.div>
+            </div>
 
             {/* Links */}
-            {Object.entries(footerLinks).map(([category, links], index) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <h3 className="font-bold text-lg mb-6 text-white">{category}</h3>
+            {Object.entries(footerLinks).map(([category, links]) => (
+              <div key={category}>
+                <h3 className="font-semibold text-lg mb-6 text-white">{category}</h3>
                 <ul className="space-y-4">
                   {links.map((link) => (
                     <li key={link.name}>
                       <Link
                         to={link.href}
-                        className="text-indigo-200 hover:text-white transition-colors text-sm leading-relaxed hover:translate-x-1 inline-block duration-200"
+                        className="text-gray-400 hover:text-white transition-colors text-sm"
                       >
                         {link.name}
                       </Link>
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Contact Bar */}
-        <div className="py-12 border-t border-white/10">
+        <div className="py-12 border-t border-gray-800">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Mail className="w-6 h-6 text-indigo-300" />
-              </div>
+            <div className="flex items-center gap-4">
+              <Mail className="w-5 h-5 text-gray-400" />
               <div>
-                <div className="text-sm font-semibold text-white mb-1">Email</div>
-                <a href="mailto:contact@vulgatech.online" className="text-indigo-200 hover:text-white transition-colors text-sm">
+                <div className="text-sm font-medium text-white mb-1">Email</div>
+                <a href="mailto:contact@vulgatech.online" className="text-gray-400 hover:text-white transition-colors text-sm">
                   contact@vulgatech.online
                 </a>
               </div>
             </div>
             
-            <div className="flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Phone className="w-6 h-6 text-indigo-300" />
-              </div>
+            <div className="flex items-center gap-4">
+              <Phone className="w-5 h-5 text-gray-400" />
               <div>
-                <div className="text-sm font-semibold text-white mb-1">Téléphone</div>
-                <a href="tel:+22500000000" className="text-indigo-200 hover:text-white transition-colors text-sm">
+                <div className="text-sm font-medium text-white mb-1">Téléphone</div>
+                <a href="tel:+22500000000" className="text-gray-400 hover:text-white transition-colors text-sm">
                   +225 00 00 00 00
                 </a>
               </div>
             </div>
             
-            <div className="flex items-center gap-4 group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <MapPin className="w-6 h-6 text-indigo-300" />
-              </div>
+            <div className="flex items-center gap-4">
+              <MapPin className="w-5 h-5 text-gray-400" />
               <div>
-                <div className="text-sm font-semibold text-white mb-1">Siège social</div>
-                <span className="text-indigo-200 text-sm">
+                <div className="text-sm font-medium text-white mb-1">Siège social</div>
+                <span className="text-gray-400 text-sm">
                   Abidjan, Côte d'Ivoire
                 </span>
               </div>
@@ -178,27 +132,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-8 border-t border-white/10">
+        <div className="py-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-sm text-indigo-200">
-              © {currentYear} VulgaTech. Tous droits réservés.
+            <div className="text-sm text-gray-400">
+              &copy; {currentYear} VulgaTech. Tous droits réservés.
             </div>
             
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2 text-sm text-indigo-200">
-                <Globe className="w-4 h-4" />
-                <span>Pan-Africain</span>
-              </div>
-              
-              <div className="flex items-center gap-2 text-sm text-indigo-200">
-                <Shield className="w-4 h-4" />
-                <span>Sécurisé</span>
-              </div>
-              
-              <div className="flex items-center gap-2 text-sm text-indigo-200">
-                <Heart className="w-4 h-4 text-red-400 fill-current" />
-                <span>Fait avec passion</span>
-              </div>
+            <div className="flex items-center gap-6 text-sm text-gray-400">
+              <span>Pan-Africain</span>
+              <span>Sécurisé</span>
+              <span>Fait avec passion</span>
             </div>
           </div>
         </div>

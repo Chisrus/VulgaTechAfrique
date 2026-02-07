@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Modern Design System 2025 - Indigo/Purple Theme */
+/* Minimalist Design System - Indigo/Purple Theme */
 
 @layer base {
   :root {
-    /* Modern gradient-based color system */
-    --background: 0 0% 99%;
+    /* Clean color system */
+    --background: 0 0% 100%;
     --foreground: 220 20% 15%;
 
     --card: 0 0% 100%;
@@ -16,47 +16,32 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 15%;
 
-    /* Primary - Indigo to Purple gradient */
+    /* Primary - Clean indigo */
     --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Soft purple */
-    --secondary: 258 80% 96%;
-    --secondary-foreground: 258 60% 25%;
+    /* Secondary - Light gray */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 20% 15%;
 
-    /* Muted - Light purple-gray */
-    --muted: 258 30% 96%;
-    --muted-foreground: 258 15% 45%;
+    /* Muted - Very light gray */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
 
-    /* Accent - Vibrant purple */
+    /* Accent - Purple */
     --accent: 262 83% 58%;
     --accent-foreground: 0 0% 100%;
 
-    /* Destructive - Modern red */
+    /* Destructive - Clean red */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Border - Soft purple */
-    --border: 258 30% 90%;
-    --input: 258 30% 90%;
+    /* Border - Light gray */
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
     --ring: 221 83% 53%;
 
-    --radius: 0.875rem;
-
-    /* Enhanced gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(262 83% 58%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(258 80% 96%) 50%, hsl(262 83% 58%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 99%) 0%, hsl(258 80% 96%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(258 30% 96%) 100%);
-    
-    /* Enhanced shadows with purple tint */
-    --shadow-sm: 0 1px 2px hsl(258 30% 15% / 0.05);
-    --shadow-md: 0 4px 12px hsl(258 30% 15% / 0.08);
-    --shadow-lg: 0 8px 24px hsl(258 30% 15% / 0.12);
-    --shadow-xl: 0 16px 48px hsl(258 30% 15% / 0.15);
-    --shadow-2xl: 0 32px 64px hsl(258 30% 15% / 0.2);
-    --shadow-purple: 0 8px 32px hsl(262 83% 58% / 0.15);
-    --shadow-indigo: 0 8px 32px hsl(221 83% 53% / 0.15);
+    --radius: 0.5rem;
   }
 
   .dark {
@@ -72,11 +57,11 @@
     --primary: 221 83% 53%;
     --primary-foreground: 220 20% 8%;
 
-    --secondary: 258 30% 15%;
+    --secondary: 220 20% 15%;
     --secondary-foreground: 0 0% 95%;
 
-    --muted: 258 20% 15%;
-    --muted-foreground: 258 15% 64%;
+    --muted: 220 20% 15%;
+    --muted-foreground: 220 8% 64%;
 
     --accent: 262 83% 58%;
     --accent-foreground: 220 20% 8%;
@@ -84,8 +69,8 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 95%;
 
-    --border: 258 30% 20%;
-    --input: 258 30% 20%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
     --ring: 221 83% 53%;
   }
 }
@@ -98,17 +83,11 @@
   body {
     @apply bg-background text-foreground font-sans;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
-    min-height: 100vh;
   }
   
-  /* Enhanced typography */
+  /* Clean typography */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
-    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--primary)) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    @apply font-semibold tracking-tight text-gray-900;
   }
   
   h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
@@ -120,93 +99,57 @@
 }
 
 @layer components {
-  /* Modern button styles with gradients */
+  /* Clean button styles */
   .btn-primary {
-    @apply bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 
-           text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300
-           shadow-lg hover:shadow-xl hover:shadow-purple-500/25 active:scale-[0.98];
+    @apply bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors;
   }
   
   .btn-secondary {
-    @apply bg-gradient-to-r from-indigo-50 to-purple-50 hover:from-indigo-100 hover:to-purple-100
-           text-indigo-700 hover:text-indigo-800 px-6 py-3 rounded-xl font-semibold transition-all duration-300
-           border border-indigo-200 hover:border-indigo-300 shadow-sm hover:shadow-md;
+    @apply bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium transition-colors;
   }
   
   .btn-ghost {
-    @apply hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-700
-           px-6 py-3 rounded-xl font-medium transition-all duration-300;
+    @apply hover:bg-gray-100 text-gray-600 hover:text-gray-900 px-6 py-3 rounded-lg font-medium transition-colors;
   }
   
   .btn-outline {
-    @apply border-2 border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50 text-indigo-600 hover:text-indigo-700
-           px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-sm hover:shadow-md;
+    @apply border border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 px-6 py-3 rounded-lg font-medium transition-colors;
   }
   
-  /* Enhanced card styles */
+  /* Clean card styles */
   .card {
-    @apply bg-gradient-to-br from-card to-secondary/50 text-card-foreground rounded-2xl 
-           border border-border shadow-md hover:shadow-xl transition-all duration-300
-           hover:shadow-purple-500/10 hover:-translate-y-1;
+    @apply bg-white text-gray-900 rounded-lg border border-gray-200 shadow-sm;
   }
   
   .card-hover {
-    @apply hover:shadow-2xl hover:shadow-purple-500/20 cursor-pointer;
+    @apply hover:shadow-md transition-shadow duration-300;
   }
   
-  .card-glass {
-    @apply bg-white/80 backdrop-blur-sm text-foreground rounded-2xl 
-           border border-white/20 shadow-xl transition-all duration-300;
-  }
-  
-  /* Modern input styles */
+  /* Clean input styles */
   .input-modern {
-    @apply w-full px-4 py-3 rounded-xl border border-indigo-200 focus:border-indigo-400
-           bg-gradient-to-r from-white to-indigo-50/30 text-foreground placeholder-muted-foreground
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-400
+           bg-white text-gray-900 placeholder-gray-500
            focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-offset-2
-           transition-all duration-200 shadow-sm focus:shadow-md;
+           transition-colors;
   }
   
-  /* Modern navigation */
+  /* Clean navigation */
   .nav-link {
-    @apply text-muted-foreground hover:text-indigo-600 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50
-           px-3 py-2 rounded-lg transition-all duration-200 font-medium;
+    @apply text-gray-600 hover:text-gray-900 hover:bg-gray-50
+           px-3 py-2 rounded-lg transition-colors font-medium;
   }
   
   .nav-link-active {
-    @apply text-indigo-600 bg-gradient-to-r from-indigo-50 to-purple-50 font-semibold;
+    @apply text-indigo-600 bg-gray-50 font-medium;
   }
   
-  /* Hero section styles */
-  .hero-gradient {
-    background: var(--gradient-hero);
-  }
-  
-  .hero-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold 
-           leading-tight tracking-tight;
-    background: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(262 83% 58%) 50%, hsl(258 80% 96%) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .hero-subtitle {
-    @apply text-lg md:text-xl text-muted-foreground 
-           leading-relaxed max-w-3xl;
-  }
-  
-  /* Section styles */
+  /* Clean section styles */
   .section {
     @apply py-16 md:py-20 lg:py-24;
   }
   
   .section-lg {
     @apply py-20 md:py-24 lg:py-32;
-  }
-  
-  .section-gradient {
-    @apply bg-gradient-to-br from-indigo-50 via-white to-purple-50;
   }
   
   .container-modern {
@@ -224,11 +167,7 @@
   
   /* Text utilities */
   .text-gradient {
-    @apply bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent;
-  }
-  
-  .text-gradient-purple {
-    @apply bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent;
+    @apply text-indigo-600;
   }
   
   .text-balance {
@@ -247,23 +186,11 @@
   .scale-in {
     animation: scaleIn 0.4s ease-out;
   }
-  
-  .float-animation {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .pulse-glow {
-    animation: pulseGlow 2s ease-in-out infinite;
-  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-  
-  .backdrop-blur-xs {
-    backdrop-filter: blur(2px);
   }
 }
 
@@ -275,7 +202,7 @@
 @keyframes slideUp {
   from { 
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to { 
     opacity: 1;
@@ -286,7 +213,7 @@
 @keyframes scaleIn {
   from { 
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
   to { 
     opacity: 1;
@@ -294,23 +221,9 @@
   }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes pulseGlow {
-  0%, 100% { 
-    box-shadow: 0 0 20px hsl(262 83% 58% / 0.3);
-  }
-  50% { 
-    box-shadow: 0 0 40px hsl(262 83% 58% / 0.6);
-  }
-}
-
-/* Custom scrollbar */
+/* Clean scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -318,39 +231,21 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, hsl(221 83% 53%) 0%, hsl(262 83% 58%) 100%);
-  border-radius: 4px;
+  background: hsl(var(--primary));
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, hsl(221 83% 63%) 0%, hsl(262 83% 68%) 100%);
+  background: hsl(var(--primary) / 0.8);
 }
 
-/* Focus styles */
+/* Clean focus styles */
 .focus-ring {
   @apply focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:ring-offset-2 focus:ring-offset-background;
 }
 
-/* Selection styles */
+/* Clean selection styles */
 ::selection {
   background: hsl(var(--primary) / 0.2);
   color: hsl(var(--foreground));
-}
-
-/* Enhanced hover states */
-.hover-lift {
-  @apply transition-transform duration-300 hover:-translate-y-2;
-}
-
-.hover-glow {
-  @apply transition-shadow duration-300 hover:shadow-purple-500/25 hover:shadow-xl;
-}
-
-/* Glass morphism effects */
-.glass {
-  @apply bg-white/20 backdrop-blur-md border border-white/30;
-}
-
-.glass-dark {
-  @apply bg-black/20 backdrop-blur-md border border-white/10;
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, MessageCircle, User, LogOut, Sparkles } from "lucide-react";
+import { Menu, X, MessageCircle, User, LogOut } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -14,7 +14,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 10);
     };
 
     const checkUser = async () => {
@@ -57,7 +57,6 @@ const Header = () => {
     { name: "Cours", href: "/cours" },
     { name: "Articles", href: "/articles" },
     { name: "À propos", href: "/a-propos" },
-    { name: "Inclusion", href: "/inclusion" },
   ];
 
   const isActive = (href: string) => location.pathname === href;
@@ -65,36 +64,33 @@ const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
-        ? "bg-white/95 backdrop-blur-md border-b border-indigo-100 shadow-lg shadow-indigo-500/10" 
+        ? "bg-white border-b border-gray-200 shadow-sm" 
         : "bg-transparent"
     }`}>
       <div className="container-modern">
-        <nav className="flex items-center justify-between h-20">
+        <nav className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-center space-x-3 group"
+            className="flex items-center space-x-2"
           >
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
-              <Sparkles className="w-6 h-6 text-white" />
+            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+              <span className="text-white font-bold text-lg">V</span>
             </div>
-            <div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                VulgaTech
-              </span>
-              <div className="text-xs text-muted-foreground font-medium">
-                Révolution EdTech
-              </div>
-            </div>
+            <span className="text-xl font-bold text-gray-900">VulgaTech</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`nav-link ${isActive(item.href) ? 'nav-link-active' : ''}`}
+                className={`text-sm font-medium transition-colors ${
+                  isActive(item.href) 
+                    ? "text-indigo-600" 
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
               >
                 {item.name}
               </Link>
@@ -102,12 +98,12 @@ const Header = () => {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
             <Button 
               asChild
-              variant="outline" 
+              variant="ghost" 
               size="sm"
-              className="btn-outline group"
+              className="text-gray-600 hover:text-gray-900"
             >
               <a 
                 href="https://t.me/VulgaTechbot" 
@@ -115,40 +111,25 @@ const Header = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
               >
-                <MessageCircle className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                <MessageCircle className="w-4 h-4" />
                 <span>Bot IA</span>
               </a>
             </Button>
 
             {user ? (
-              <div className="flex items-center space-x-2">
-                <Button 
-                  asChild
-                  variant="ghost" 
-                  size="sm"
-                  className="btn-ghost"
-                >
-                  <Link to="/profil" className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
-                      <User className="w-4 h-4 text-indigo-600" />
-                    </div>
-                    <span>Profil</span>
-                  </Link>
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  onClick={handleSignOut}
-                  className="btn-ghost"
-                >
-                  <LogOut className="w-4 h-4" />
-                </Button>
-              </div>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={handleSignOut}
+                className="text-gray-600 hover:text-gray-900"
+              >
+                <LogOut className="w-4 h-4" />
+              </Button>
             ) : (
               <Button 
                 asChild
                 size="sm"
-                className="btn-primary"
+                className="bg-indigo-600 hover:bg-indigo-700 text-white"
               >
                 <Link to="/profil" className="flex items-center gap-2">
                   <User className="w-4 h-4" />
@@ -162,44 +143,48 @@ const Header = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="lg:hidden p-2 rounded-xl hover:bg-indigo-50"
+            className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6 text-indigo-600" />
+              <X className="w-5 h-5" />
             ) : (
-              <Menu className="w-6 h-6 text-indigo-600" />
+              <Menu className="w-5 h-5" />
             )}
           </Button>
         </nav>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-6 border-t border-indigo-100 bg-white/95 backdrop-blur-md">
-            <div className="flex flex-col space-y-2">
+          <div className="md:hidden py-4 border-t border-gray-200 bg-white">
+            <div className="flex flex-col space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`nav-link ${isActive(item.href) ? 'nav-link-active' : ''}`}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive(item.href) 
+                      ? "text-indigo-600" 
+                      : "text-gray-600 hover:text-gray-900"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
               
-              <div className="pt-4 border-t border-indigo-100 space-y-3">
+              <div className="pt-4 border-t border-gray-200 space-y-3">
                 <Button 
                   asChild
-                  variant="outline" 
+                  variant="ghost" 
                   size="sm"
-                  className="btn-outline w-full"
+                  className="text-gray-600 hover:text-gray-900 w-full justify-start"
                 >
                   <a 
                     href="https://t.me/VulgaTechbot" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
+                    className="flex items-center gap-2"
                   >
                     <MessageCircle className="w-4 h-4" />
                     <span>Bot IA</span>
@@ -207,33 +192,20 @@ const Header = () => {
                 </Button>
 
                 {user ? (
-                  <div className="space-y-2">
-                    <Button 
-                      asChild
-                      variant="ghost" 
-                      size="sm"
-                      className="btn-ghost w-full"
-                    >
-                      <Link to="/profil" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-2">
-                        <User className="w-4 h-4" />
-                        <span>Profil</span>
-                      </Link>
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      onClick={handleSignOut}
-                      className="btn-ghost w-full flex items-center justify-center gap-2"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      <span>Déconnexion</span>
-                    </Button>
-                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={handleSignOut}
+                    className="text-gray-600 hover:text-gray-900 w-full justify-start"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    <span>Déconnexion</span>
+                  </Button>
                 ) : (
                   <Button 
                     asChild
                     size="sm"
-                    className="btn-primary w-full"
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white w-full"
                   >
                     <Link to="/profil" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-2">
                       <User className="w-4 h-4" />

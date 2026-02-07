@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Clock, Users, Star, Zap, Brain, Rocket, Target, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Users, Star } from "lucide-react";
 import { cleanText, cleanAndTruncate } from "@/utils/textCleaner";
 
 interface Course {
@@ -24,7 +24,6 @@ const CoursesSection = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        // Simuler des données pour l'instant
         const mockCourses: Course[] = [
           {
             id: "1",
@@ -107,68 +106,49 @@ const CoursesSection = () => {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty.toLowerCase()) {
-      case "débutant": return "text-green-600 bg-green-50 border-green-200";
-      case "intermédiaire": return "text-yellow-600 bg-yellow-50 border-yellow-200";
-      case "avancé": return "text-red-600 bg-red-50 border-red-200";
-      default: return "text-gray-600 bg-gray-50 border-gray-200";
-    }
-  };
-
-  const getCategoryIcon = (category: string) => {
-    switch (category.toLowerCase()) {
-      case "robotique": return <Rocket className="w-6 h-6" />;
-      case "ia": return <Brain className="w-6 h-6" />;
-      case "programmation": return <Target className="w-6 h-6" />;
-      case "data science": return <Star className="w-6 h-6" />;
-      case "blockchain": return <Zap className="w-6 h-6" />;
-      case "mobile": return <BookOpen className="w-6 h-6" />;
-      default: return <BookOpen className="w-6 h-6" />;
+      case "débutant": return "text-green-600 bg-green-50";
+      case "intermédiaire": return "text-yellow-600 bg-yellow-50";
+      case "avancé": return "text-red-600 bg-red-50";
+      default: return "text-gray-600 bg-gray-50";
     }
   };
 
   return (
-    <section className="section-gradient section">
+    <section className="py-20 bg-gray-50">
       <div className="container-modern">
         {/* Header */}
-        <motion.div 
-          className="text-center max-w-4xl mx-auto mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-semibold shadow-lg mb-8">
-            <Sparkles className="w-5 h-5" />
-            <span>Formations Premium 2025</span>
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium mb-6">
+            Formations Premium 2025
+          </span>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Transformez votre <span className="text-gradient">avenir</span> avec la tech
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            Transformez votre <span className="text-indigo-600">avenir</span> avec la tech
           </h2>
           
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="text-xl text-gray-600 leading-relaxed">
             Des formations pratiques et interactives conçues par des experts pour vous rendre 
             compétitif dans le numérique africain et mondial.
           </p>
-        </motion.div>
+        </div>
 
         {/* Courses Grid */}
         {loading ? (
-          <div className="grid-modern">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="card animate-pulse">
-                <div className="w-full h-48 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl mb-6" />
-                <div className="h-6 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-lg mb-3" />
-                <div className="h-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg mb-6" />
+              <div key={i} className="bg-white rounded-lg p-6 animate-pulse">
+                <div className="w-full h-48 bg-gray-200 rounded-lg mb-6" />
+                <div className="h-6 bg-gray-200 rounded-lg mb-3" />
+                <div className="h-4 bg-gray-200 rounded-lg mb-6" />
                 <div className="flex justify-between">
-                  <div className="h-3 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg w-20" />
-                  <div className="h-3 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg w-16" />
+                  <div className="h-3 bg-gray-200 rounded-lg w-20" />
+                  <div className="h-3 bg-gray-200 rounded-lg w-16" />
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid-modern">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses.map((course, index) => (
               <motion.div
                 key={course.id}
@@ -177,68 +157,66 @@ const CoursesSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="card card-hover group h-full flex flex-col">
+                <div className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
                   {/* Header */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                      {getCategoryIcon(course.category)}
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center">
+                      <BookOpen className="w-6 h-6 text-indigo-600" />
                     </div>
                     
                     <div className="flex flex-col items-end gap-2">
                       {course.is_free_preview && (
-                        <span className="text-xs font-semibold text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-200">
+                        <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded">
                           Gratuit
                         </span>
                       )}
-                      <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${getDifficultyColor(course.difficulty)}`}>
+                      <span className={`text-xs font-medium px-2 py-1 rounded ${getDifficultyColor(course.difficulty)}`}>
                         {cleanText(course.difficulty)}
                       </span>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="flex-grow">
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-gradient transition-colors">
-                      {cleanText(course.title)}
-                    </h3>
-                    
-                    <p className="text-muted-foreground mb-6 line-clamp-2 leading-relaxed">
-                      {cleanAndTruncate(course.description, 120)}
-                    </p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    {cleanText(course.title)}
+                  </h3>
+                  
+                  <p className="text-gray-600 mb-6 line-clamp-2 leading-relaxed">
+                    {cleanAndTruncate(course.description, 120)}
+                  </p>
 
-                    {/* Stats */}
-                    <div className="flex items-center gap-6 text-sm text-muted-foreground mb-6">
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-indigo-500" />
-                        <span>{course.duration_minutes} min</span>
-                      </div>
-                      
-                      {course.enrollment_count && (
-                        <div className="flex items-center gap-2">
-                          <Users className="w-4 h-4 text-purple-500" />
-                          <span>{course.enrollment_count.toLocaleString()}</span>
-                        </div>
-                      )}
-                      
-                      {course.rating && (
-                        <div className="flex items-center gap-2">
-                          <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                          <span className="font-semibold">{course.rating}</span>
-                        </div>
-                      )}
+                  {/* Stats */}
+                  <div className="flex items-center gap-6 text-sm text-gray-500 mb-6">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      <span>{course.duration_minutes} min</span>
                     </div>
+                    
+                    {course.enrollment_count && (
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4" />
+                        <span>{course.enrollment_count.toLocaleString()}</span>
+                      </div>
+                    )}
+                    
+                    {course.rating && (
+                      <div className="flex items-center gap-2">
+                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                        <span className="font-medium">{course.rating}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Footer */}
-                  <div className="pt-6 border-t border-indigo-100">
+                  <div className="pt-4 border-t border-gray-100">
                     <Button 
                       asChild
                       variant="ghost" 
-                      className="w-full justify-between group-hover:bg-gradient-to-r group-hover:from-indigo-50 group-hover:to-purple-50 group-hover:text-indigo-700 font-semibold"
+                      className="w-full justify-between text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 font-medium"
                     >
                       <Link to={`/cours/${course.id}`}>
                         <span>Commencer la formation</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-4 h-4" />
                       </Link>
                     </Button>
                   </div>
@@ -249,14 +227,8 @@ const CoursesSection = () => {
         )}
 
         {/* CTA */}
-        <motion.div 
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 shadow-2xl shadow-purple-500/25">
+        <div className="text-center mt-16">
+          <div className="bg-indigo-600 rounded-lg p-12">
             <h3 className="text-3xl font-bold text-white mb-4">
               Prêt à transformer votre carrière ?
             </h3>
@@ -266,7 +238,7 @@ const CoursesSection = () => {
             <Button 
               asChild
               size="lg"
-              className="bg-white text-indigo-600 hover:bg-gray-50 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white text-indigo-600 hover:bg-gray-50 font-semibold px-8 py-4 rounded-lg"
             >
               <Link to="/cours" className="flex items-center gap-3">
                 <span>Voir toutes les formations</span>
@@ -274,7 +246,7 @@ const CoursesSection = () => {
               </Link>
             </Button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
