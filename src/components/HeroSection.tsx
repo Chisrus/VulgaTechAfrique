@@ -41,7 +41,7 @@ const HeroSection = () => {
               >
                 <a href="/cours">
                   <Target className="w-5 h-5 mr-2" />
-                  Lancer ma formation
+                  Découvrir nos formations
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </a>
               </Button>
@@ -54,33 +54,9 @@ const HeroSection = () => {
               >
                 <a href="https://t.me/VulgaTechbot" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5 mr-2" />
-                  Essayer le Bot IA
+                  Rejoindre la communauté
                 </a>
               </Button>
-            </div>
-          </AnimatedSection>
-
-          {/* Stats */}
-          <AnimatedSection animation="slideUp" delay={0.8}>
-            <div className="grid grid-cols-3 gap-8 pt-16">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-indigo-600 mb-2">
-                  <Counter from={0} to={12} suffix="+" />
-                </div>
-                <div className="text-sm text-gray-600">Langues africaines</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-purple-600 mb-2">
-                  <Counter from={0} to={8} />
-                </div>
-                <div className="text-sm text-gray-600">Pays couverts</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-indigo-600 mb-2">
-                  <Counter from={0} to={500} suffix="+" />
-                </div>
-                <div className="text-sm text-gray-600">Apprenants</div>
-              </div>
             </div>
           </AnimatedSection>
         </div>

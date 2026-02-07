@@ -54,7 +54,7 @@ const Header = () => {
 
   const navigation = [
     { name: "Accueil", href: "/" },
-    { name: "Cours", href: "/cours" },
+    { name: "Formations", href: "/cours" },
     { name: "Articles", href: "/articles" },
     { name: "À propos", href: "/a-propos" },
   ];
@@ -64,7 +64,7 @@ const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
-        ? "bg-white border-b border-gray-200 shadow-sm" 
+        ? "bg-white/95 backdrop-blur-md border-b border-amber-200 shadow-sm" 
         : "bg-transparent"
     }`}>
       <div className="container-modern">
@@ -74,10 +74,15 @@ const Header = () => {
             to="/" 
             className="flex items-center space-x-2"
           >
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-lg">V</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">VulgaTech</span>
+            <div>
+              <span className="text-xl font-bold text-gray-900">VulgaTech</span>
+              <div className="text-xs text-amber-600 font-medium">
+                Education Technologique Africaine
+              </div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -88,8 +93,8 @@ const Header = () => {
                 to={item.href}
                 className={`text-sm font-medium transition-colors ${
                   isActive(item.href) 
-                    ? "text-indigo-600" 
-                    : "text-gray-600 hover:text-gray-900"
+                    ? "text-amber-600 bg-amber-50" 
+                    : "text-gray-600 hover:text-gray-900 hover:bg-amber-50"
                 }`}
               >
                 {item.name}
@@ -129,7 +134,7 @@ const Header = () => {
                 className="flex items-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Bot IA</span>
+                <span>Communauté</span>
               </a>
             </Button>
 
@@ -146,7 +151,7 @@ const Header = () => {
               <Button 
                 asChild
                 size="sm"
-                className="bg-indigo-600 hover:bg-indigo-700 text-white"
+                className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white"
               >
                 <Link to="/profil" className="flex items-center gap-2">
                   <User className="w-4 h-4" />
@@ -173,7 +178,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 bg-white">
+          <div className="md:hidden py-4 border-t border-amber-200 bg-white/95 backdrop-blur-md">
             <div className="flex flex-col space-y-4">
               {navigation.map((item) => (
                 <Link
@@ -181,8 +186,8 @@ const Header = () => {
                   to={item.href}
                   className={`text-sm font-medium transition-colors ${
                     isActive(item.href) 
-                      ? "text-indigo-600" 
-                      : "text-gray-600 hover:text-gray-900"
+                      ? "text-amber-600 bg-amber-50" 
+                      : "text-gray-600 hover:text-gray-900 hover:bg-amber-50"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -190,7 +195,7 @@ const Header = () => {
                 </Link>
               ))}
               
-              <div className="pt-4 border-t border-gray-200 space-y-3">
+              <div className="pt-4 border-t border-amber-200 space-y-3">
                 <Button 
                   asChild
                   variant="ghost" 
@@ -221,7 +226,7 @@ const Header = () => {
                     className="flex items-center gap-2"
                   >
                     <MessageCircle className="w-4 h-4" />
-                    <span>Bot IA</span>
+                    <span>Communauté</span>
                   </a>
                 </Button>
 
@@ -239,7 +244,7 @@ const Header = () => {
                   <Button 
                     asChild
                     size="sm"
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white w-full"
+                    className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white w-full"
                   >
                     <Link to="/profil" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-2">
                       <User className="w-4 h-4" />

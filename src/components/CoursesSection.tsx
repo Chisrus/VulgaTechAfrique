@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Clock, Users, Star } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Star } from "lucide-react";
 import { cleanText, cleanAndTruncate } from "@/utils/textCleaner";
 
 interface Course {
@@ -13,7 +13,6 @@ interface Course {
   difficulty: string;
   duration_minutes: number;
   is_free_preview: boolean;
-  enrollment_count?: number;
   rating?: number;
 }
 
@@ -33,7 +32,6 @@ const CoursesSection = () => {
             difficulty: "Débutant",
             duration_minutes: 120,
             is_free_preview: true,
-            enrollment_count: 127,
             rating: 4.9
           },
           {
@@ -44,7 +42,6 @@ const CoursesSection = () => {
             difficulty: "Intermédiaire",
             duration_minutes: 180,
             is_free_preview: false,
-            enrollment_count: 89,
             rating: 4.8
           },
           {
@@ -55,7 +52,6 @@ const CoursesSection = () => {
             difficulty: "Débutant", 
             duration_minutes: 150,
             is_free_preview: true,
-            enrollment_count: 156,
             rating: 4.7
           },
           {
@@ -66,7 +62,6 @@ const CoursesSection = () => {
             difficulty: "Intermédiaire",
             duration_minutes: 200,
             is_free_preview: false,
-            enrollment_count: 67,
             rating: 4.9
           },
           {
@@ -77,7 +72,6 @@ const CoursesSection = () => {
             difficulty: "Avancé",
             duration_minutes: 160,
             is_free_preview: false,
-            enrollment_count: 34,
             rating: 4.6
           },
           {
@@ -88,7 +82,6 @@ const CoursesSection = () => {
             difficulty: "Intermédiaire",
             duration_minutes: 140,
             is_free_preview: true,
-            enrollment_count: 98,
             rating: 4.8
           }
         ];
@@ -113,22 +106,35 @@ const CoursesSection = () => {
     }
   };
 
+  const getCategoryIcon = (category: string) => {
+    // Icônes culturels africains simplifiés
+    const icons = {
+      "Robotique": "🤖",
+      "IA": "🧠", 
+      "Programmation": "💻",
+      "Data Science": "📊",
+      "Blockchain": "⛓",
+      "Mobile": "📱"
+    };
+    return icons[category as keyof typeof icons] || "📚";
+  };
+
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
       <div className="container-modern">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium mb-6">
-            Formations Premium 2025
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <span className="inline-block px-4 py-2 bg-amber-600 text-white rounded-full text-sm font-medium mb-6">
+            Formations Technologiques Africaines
           </span>
           
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Transformez votre <span className="text-indigo-600">avenir</span> avec la tech
+            Formez l'<span className="text-orange-600">avenir</span> avec la technologie
           </h2>
           
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Des formations pratiques et interactives conçues par des experts pour vous rendre 
-            compétitif dans le numérique africain et mondial.
+          <p className="text-xl text-gray-700 leading-relaxed">
+            Des formations pratiques et interactives conçues pour vous donner les compétences 
+            nécessaires dans le numérique africain et mondial.
           </p>
         </div>
 
@@ -137,12 +143,12 @@ const CoursesSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div key={i} className="bg-white rounded-lg p-6 animate-pulse">
-                <div className="w-full h-48 bg-gray-200 rounded-lg mb-6" />
-                <div className="h-6 bg-gray-200 rounded-lg mb-3" />
-                <div className="h-4 bg-gray-200 rounded-lg mb-6" />
+                <div className="w-full h-48 bg-gradient-to-br from-amber-100 to-orange-100 rounded-lg mb-6" />
+                <div className="h-6 bg-gradient-to-r from-amber-100 to-orange-100 rounded-lg mb-3" />
+                <div className="h-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg mb-6" />
                 <div className="flex justify-between">
-                  <div className="h-3 bg-gray-200 rounded-lg w-20" />
-                  <div className="h-3 bg-gray-200 rounded-lg w-16" />
+                  <div className="h-3 bg-gradient-to-r from-amber-100 to-orange-100 rounded-lg w-20" />
+                  <div className="h-3 bg-gradient-to-r from-amber-100 to-orange-100 rounded-lg w-16" />
                 </div>
               </div>
             ))}
@@ -157,11 +163,11 @@ const CoursesSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+                <div className="bg-white rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-amber-200">
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center">
-                      <BookOpen className="w-6 h-6 text-indigo-600" />
+                    <div className="text-3xl mb-2">
+                      {getCategoryIcon(course.category)}
                     </div>
                     
                     <div className="flex flex-col items-end gap-2">
@@ -185,19 +191,12 @@ const CoursesSection = () => {
                     {cleanAndTruncate(course.description, 120)}
                   </p>
 
-                  {/* Stats */}
+                  {/* Info */}
                   <div className="flex items-center gap-6 text-sm text-gray-500 mb-6">
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
                       <span>{course.duration_minutes} min</span>
                     </div>
-                    
-                    {course.enrollment_count && (
-                      <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4" />
-                        <span>{course.enrollment_count.toLocaleString()}</span>
-                      </div>
-                    )}
                     
                     {course.rating && (
                       <div className="flex items-center gap-2">
@@ -208,14 +207,14 @@ const CoursesSection = () => {
                   </div>
 
                   {/* Footer */}
-                  <div className="pt-4 border-t border-gray-100">
+                  <div className="pt-4 border-t border-amber-100">
                     <Button 
                       asChild
                       variant="ghost" 
-                      className="w-full justify-between text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 font-medium"
+                      className="w-full justify-between text-orange-600 hover:text-orange-700 hover:bg-orange-50 font-medium"
                     >
                       <Link to={`/cours/${course.id}`}>
-                        <span>Commencer la formation</span>
+                        <span>Découvrir la formation</span>
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </Button>
@@ -228,20 +227,20 @@ const CoursesSection = () => {
 
         {/* CTA */}
         <div className="text-center mt-16">
-          <div className="bg-indigo-600 rounded-lg p-12">
+          <div className="bg-gradient-to-r from-amber-600 to-orange-600 rounded-xl p-12 shadow-xl">
             <h3 className="text-3xl font-bold text-white mb-4">
-              Prêt à transformer votre carrière ?
+              Prêt à commencer votre voyage ?
             </h3>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Rejoignez des milliers d'apprenants africains qui construisent déjà leur avenir avec la technologie.
+              Rejoignez-nous dans cette aventure technologique qui transforme l'Afrique.
             </p>
             <Button 
               asChild
               size="lg"
-              className="bg-white text-indigo-600 hover:bg-gray-50 font-semibold px-8 py-4 rounded-lg"
+              className="bg-white text-orange-600 hover:bg-amber-50 font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <Link to="/cours" className="flex items-center gap-3">
-                <span>Voir toutes les formations</span>
+                <span>Explorer toutes les formations</span>
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </Button>
