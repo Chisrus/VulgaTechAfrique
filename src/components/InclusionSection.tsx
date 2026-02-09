@@ -165,7 +165,7 @@ const InclusionSection = () => {
           <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/30">
             <MessageCircle className="w-10 h-10 text-primary/60 mx-auto mb-4" />
             <blockquote className="text-lg italic text-foreground/90 mb-4">
-              "Grâce à VulgaTech, mon fils au village apprend Python comme les enfants de la capitale. 
+              "Grâce à VulgaTechAfrique, mon fils au village apprend Python comme les enfants de la capitale. 
               La distance n'est plus une barrière."
             </blockquote>
             <cite className="text-sm text-muted-foreground">
