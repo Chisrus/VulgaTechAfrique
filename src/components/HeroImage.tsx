@@ -46,8 +46,8 @@ const HeroImage = () => {
                     </svg>
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-gray-900">Pan-Africain</div>
-                    <div className="text-xs text-gray-600">54 pays couverts</div>
+                    <div className="text-sm font-bold text-gray-900">Côte d'Ivoire</div>
+                    <div className="text-xs text-gray-600">1 pays</div>
                   </div>
                 </div>
               </motion.div>

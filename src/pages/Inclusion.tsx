@@ -60,9 +60,9 @@ const Inclusion = () => {
   ];
 
   const stats = [
-    { number: "30+", label: "Langues supportées" },
-    { number: "54", label: "Pays couverts" },
-    { number: "1M+", label: "Utilisateurs visés" },
+    { number: "1", label: "Langue" },
+    { number: "1", label: "Pays" },
+    { number: "3", label: "Apprenants" },
     { number: "100%", label: "Accessible" }
   ];
 
