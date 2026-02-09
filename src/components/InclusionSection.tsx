@@ -57,19 +57,23 @@ const InclusionSection = () => {
           </p>
           
           {/* Mise en avant langues locales + langue des signes */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-card border border-border/50">
-              <Globe className="w-5 h-5 text-primary" />
+          <div className="flex flex-col sm:flex-row items-stretch justify-center gap-6 mt-8">
+            <div className="flex-1 max-w-sm flex items-center gap-4 px-6 py-5 rounded-2xl bg-primary/10 border-2 border-primary/30">
+              <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
+                <Globe className="w-6 h-6 text-primary" />
+              </div>
               <div className="text-left">
-                <div className="text-sm font-semibold text-foreground">Langues locales africaines</div>
-                <div className="text-xs text-muted-foreground">Bambara, Wolof, Swahili, Baoulé…</div>
+                <div className="text-base font-bold text-foreground">Langues locales africaines</div>
+                <div className="text-sm text-muted-foreground">Bambara, Wolof, Swahili, Baoulé…</div>
               </div>
             </div>
-            <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-card border border-border/50">
-              <Ear className="w-5 h-5 text-primary" />
+            <div className="flex-1 max-w-sm flex items-center gap-4 px-6 py-5 rounded-2xl bg-primary/10 border-2 border-primary/30">
+              <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
+                <Ear className="w-6 h-6 text-primary" />
+              </div>
               <div className="text-left">
-                <div className="text-sm font-semibold text-foreground">Langue des signes</div>
-                <div className="text-xs text-muted-foreground">Contenus adaptés pour les sourds et malentendants</div>
+                <div className="text-base font-bold text-foreground">Langue des signes</div>
+                <div className="text-sm text-muted-foreground">Contenus adaptés pour les sourds et malentendants</div>
               </div>
             </div>
           </div>
