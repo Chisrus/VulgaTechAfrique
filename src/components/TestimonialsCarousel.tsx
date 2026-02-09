@@ -5,7 +5,7 @@ import AnimatedSection from "./AnimatedSection";
 
 const testimonials = [
   {
-    quote: "Grâce à VulgaTech, mon fils au village apprend Python comme les enfants de la capitale. La distance n'est plus une barrière.",
+    quote: "Grâce à VulgaTechAfrique, mon fils au village apprend Python comme les enfants de la capitale. La distance n'est plus une barrière.",
     author: "Aminata K.",
     role: "Mère de famille",
     location: "Région de Ségou, Mali"
