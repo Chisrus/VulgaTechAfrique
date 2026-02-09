@@ -51,10 +51,28 @@ const InclusionSection = () => {
             La technologie n'exclut{" "}
             <span className="text-gradient-primary">personne</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground mb-6">
             VulgaTechAfrique est né d'une conviction : chaque africain, qu'il soit en ville ou au village, 
             entendant ou sourd, diplômé ou autodidacte, mérite d'accéder au savoir technologique.
           </p>
+          
+          {/* Mise en avant langues locales + langue des signes */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-card border border-border/50">
+              <Globe className="w-5 h-5 text-primary" />
+              <div className="text-left">
+                <div className="text-sm font-semibold text-foreground">Langues locales africaines</div>
+                <div className="text-xs text-muted-foreground">Bambara, Wolof, Swahili, Baoulé…</div>
+              </div>
+            </div>
+            <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-card border border-border/50">
+              <Ear className="w-5 h-5 text-primary" />
+              <div className="text-left">
+                <div className="text-sm font-semibold text-foreground">Langue des signes</div>
+                <div className="text-xs text-muted-foreground">Contenus adaptés pour les sourds et malentendants</div>
+              </div>
+            </div>
+          </div>
         </AnimatedSection>
 
         {/* Sign Language Video Section */}
