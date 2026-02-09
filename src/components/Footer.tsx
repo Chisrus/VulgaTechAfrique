@@ -56,7 +56,7 @@ const Footer = () => {
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <span className="text-white">VulgaTech</span>
+                  <span className="text-white">VulgaTechAfrique</span>
                   <div className="text-xs text-purple-300 font-medium">
                     Révolution Technologique
                   </div>
@@ -132,50 +132,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Vision Section */}
-        <div className="py-12 border-t border-purple-500/20">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-white mb-4">Notre Vision Technologique</h3>
-            <p className="text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Nous croyons en la puissance de la technologie pour transformer l'Afrique. 
-              Chaque innovation est une célébration de notre potentiel et un pas vers un avenir prospère.
-            </p>
-          </div>
-
-          {/* Values */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center border border-purple-500/30">
-                <Globe className="w-8 h-8 text-purple-300" />
-              </div>
-              <h4 className="font-semibold text-white mb-2">Accessibilité</h4>
-              <p className="text-gray-400 text-sm">
-                La technologie pour tous, partout en Afrique
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center border border-purple-500/30">
-                <Heart className="w-8 h-8 text-purple-300" />
-              </div>
-              <h4 className="font-semibold text-white mb-2">Innovation</h4>
-              <p className="text-gray-400 text-sm">
-                Des solutions qui transforment notre réalité
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center border border-purple-500/30">
-                <Users className="w-8 h-8 text-purple-300" />
-              </div>
-              <h4 className="font-semibold text-white mb-2">Communauté</h4>
-              <p className="text-gray-400 text-sm">
-                Ensemble nous construisons l'avenir
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Contact Bar */}
         <div className="py-12 border-t border-purple-500/20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -215,7 +171,7 @@ const Footer = () => {
         <div className="py-8 border-t border-purple-500/20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-sm text-gray-400">
-              © {currentYear} VulgaTech. Fait avec ❤️ pour l'Afrique.
+              © {currentYear} VulgaTechAfrique. Tous droits réservés.
             </div>
             
             <div className="flex items-center gap-6 text-sm text-gray-400">
