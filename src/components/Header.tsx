@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, MessageCircle, User, LogOut, Linkedin, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import AuthModal from "@/components/AuthModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
 
@@ -166,14 +168,12 @@ const Header = () => {
               </div>
             ) : (
               <Button 
-                asChild
                 size="sm"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => setAuthOpen(true)}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
               >
-                <Link to="/profil" className="flex items-center gap-2">
-                  <User className="w-4 h-4" />
-                  <span>Connexion</span>
-                </Link>
+                <User className="w-4 h-4" />
+                <span>Connexion</span>
               </Button>
             )}
           </div>
@@ -272,14 +272,12 @@ const Header = () => {
                   </div>
                 ) : (
                   <Button 
-                    asChild
                     size="sm"
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white w-full px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                    onClick={() => { setAuthOpen(true); setIsMenuOpen(false); }}
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white w-full px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
                   >
-                    <Link to="/profil" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-2">
-                      <User className="w-4 h-4" />
-                      <span>Connexion</span>
-                    </Link>
+                    <User className="w-4 h-4" />
+                    <span>Connexion</span>
                   </Button>
                 )}
               </div>
@@ -287,6 +285,7 @@ const Header = () => {
           </div>
         )}
       </div>
+      <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
     </header>
   );
 };
