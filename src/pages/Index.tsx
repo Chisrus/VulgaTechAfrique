@@ -4,7 +4,7 @@ import PlatformsSection from "@/components/PlatformsSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import InclusionSection from "@/components/InclusionSection";
-import CoursesSection from "@/components/CoursesSection";
+// CoursesSection removed from homepage
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import SignupCTASection from "@/components/SignupCTASection";
 import Footer from "@/components/Footer";
@@ -18,7 +18,6 @@ const Index = () => {
         <PlatformsSection />
         <HowItWorksSection />
         <FeaturesSection />
-        <CoursesSection />
         <InclusionSection />
         <TestimonialsCarousel />
         <SignupCTASection />
