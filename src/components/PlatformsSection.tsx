@@ -180,20 +180,20 @@ const PlatformsSection = () => {
           <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 shadow-2xl shadow-purple-500/25">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-4xl font-bold text-white mb-2">54</div>
-                <div className="text-sm text-white/80">Pays africains</div>
+                <div className="text-4xl font-bold text-white mb-2">1</div>
+                <div className="text-sm text-white/80">Pays</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-white mb-2">50+</div>
-                <div className="text-sm text-white/80">Langues supportées</div>
+                <div className="text-4xl font-bold text-white mb-2">1</div>
+                <div className="text-sm text-white/80">Langue</div>
               </div>
               <div>
                 <div className="text-4xl font-bold text-white mb-2">24/7</div>
                 <div className="text-sm text-white/80">Support IA</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-white mb-2">1M+</div>
-                <div className="text-sm text-white/80">Apprenants actifs</div>
+                <div className="text-4xl font-bold text-white mb-2">3</div>
+                <div className="text-sm text-white/80">Apprenants</div>
               </div>
             </div>
           </div>
