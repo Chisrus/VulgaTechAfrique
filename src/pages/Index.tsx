@@ -4,14 +4,13 @@ import PlatformsSection from "@/components/PlatformsSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import InclusionSection from "@/components/InclusionSection";
-// CoursesSection removed from homepage
-import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import SignupCTASection from "@/components/SignupCTASection";
 import Footer from "@/components/Footer";
+import AnimatedRobots from "@/components/AnimatedRobots";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
       <Header />
       <main>
         <HeroSection />
@@ -19,8 +18,8 @@ const Index = () => {
         <HowItWorksSection />
         <FeaturesSection />
         <InclusionSection />
-        <TestimonialsCarousel />
         <SignupCTASection />
+        <AnimatedRobots />
       </main>
       <Footer />
     </div>
